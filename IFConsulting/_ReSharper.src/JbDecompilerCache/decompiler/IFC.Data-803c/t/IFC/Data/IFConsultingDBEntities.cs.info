@@ -1,8 +1,0 @@
-﻿Code version: 6.0.2202.688
-Assembly name IFC.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null mvid {52fb3ebd-010b-44ea-9f3d-e76656edc318}
-* ref System.Data.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-  mvid {e3eb0ee4-1607-46a8-8eb7-52457b3564b2}
-* ref mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-  mvid {fcb9dac8-ae3a-4886-93b0-f4cd5b0db0be}
-* ref System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-  mvid {9459c93d-5962-4eeb-ac3f-be1a71158463}
