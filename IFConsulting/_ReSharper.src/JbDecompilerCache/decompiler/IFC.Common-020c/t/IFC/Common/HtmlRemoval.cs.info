@@ -1,0 +1,8 @@
+﻿Code version: 6.0.2202.688
+Assembly name IFC.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null mvid {3e50e530-8b52-435e-91e6-014792941d8d}
+* ref mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {fcb9dac8-ae3a-4886-93b0-f4cd5b0db0be}
+* ref System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {0467f5c0-e463-4b2c-acc5-f718cb71f056}
+* ref System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+  mvid {5cf0fd1d-1fd0-4bba-a252-1ada56614cc6}

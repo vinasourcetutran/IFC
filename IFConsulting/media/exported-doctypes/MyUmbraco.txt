@@ -1,0 +1,4328 @@
+using System;
+using System.Linq;
+using umbraco.Linq.Core;
+using System.Collections.Generic;
+
+namespace MyUmbraco {
+	public partial class MyUmbracoDataContext : UmbracoDataContext {
+		#region Partials
+		partial void OnCreated();
+		#endregion
+		
+		public MyUmbracoDataContext() : base()
+		{
+			OnCreated();
+		}
+
+		public MyUmbracoDataContext(UmbracoDataProvider provider) : base(provider)
+		{
+			OnCreated();
+		}
+
+		
+		public Tree<WebPage> WebPages
+		{
+			get
+			{
+				return this.LoadTree<WebPage>();
+			}
+		}
+		public Tree<ContentPage> ContentPages
+		{
+			get
+			{
+				return this.LoadTree<ContentPage>();
+			}
+		}
+		public Tree<AdvImage> AdvImages
+		{
+			get
+			{
+				return this.LoadTree<AdvImage>();
+			}
+		}
+		public Tree<AdvImages> AdvImagess
+		{
+			get
+			{
+				return this.LoadTree<AdvImages>();
+			}
+		}
+		public Tree<ApplyFormPage> ApplyFormPages
+		{
+			get
+			{
+				return this.LoadTree<ApplyFormPage>();
+			}
+		}
+		public Tree<ChatSetting> ChatSettings
+		{
+			get
+			{
+				return this.LoadTree<ChatSetting>();
+			}
+		}
+		public Tree<Client> Clients
+		{
+			get
+			{
+				return this.LoadTree<Client>();
+			}
+		}
+		public Tree<Clients> Clientss
+		{
+			get
+			{
+				return this.LoadTree<Clients>();
+			}
+		}
+		public Tree<Company> Companys
+		{
+			get
+			{
+				return this.LoadTree<Company>();
+			}
+		}
+		public Tree<Consultant> Consultants
+		{
+			get
+			{
+				return this.LoadTree<Consultant>();
+			}
+		}
+		public Tree<Contact> Contacts
+		{
+			get
+			{
+				return this.LoadTree<Contact>();
+			}
+		}
+		public Tree<ContactInformation> ContactInformations
+		{
+			get
+			{
+				return this.LoadTree<ContactInformation>();
+			}
+		}
+		public Tree<ContactInformation_ContactPage> ContactInformation_ContactPages
+		{
+			get
+			{
+				return this.LoadTree<ContactInformation_ContactPage>();
+			}
+		}
+		public Tree<Contacts> Contactss
+		{
+			get
+			{
+				return this.LoadTree<Contacts>();
+			}
+		}
+		public Tree<Currency> Currencys
+		{
+			get
+			{
+				return this.LoadTree<Currency>();
+			}
+		}
+		public Tree<Document> Documents
+		{
+			get
+			{
+				return this.LoadTree<Document>();
+			}
+		}
+		public Tree<EmailSetting> EmailSettings
+		{
+			get
+			{
+				return this.LoadTree<EmailSetting>();
+			}
+		}
+		public Tree<EmailSettingContainer> EmailSettingContainers
+		{
+			get
+			{
+				return this.LoadTree<EmailSettingContainer>();
+			}
+		}
+		public Tree<ExchangeRate> ExchangeRates
+		{
+			get
+			{
+				return this.LoadTree<ExchangeRate>();
+			}
+		}
+		public Tree<ExternalReference> ExternalReferences
+		{
+			get
+			{
+				return this.LoadTree<ExternalReference>();
+			}
+		}
+		public Tree<Fee> Fees
+		{
+			get
+			{
+				return this.LoadTree<Fee>();
+			}
+		}
+		public Tree<Home> Homes
+		{
+			get
+			{
+				return this.LoadTree<Home>();
+			}
+		}
+		public Tree<HomePeopleSaying> HomePeopleSayings
+		{
+			get
+			{
+				return this.LoadTree<HomePeopleSaying>();
+			}
+		}
+		public Tree<HomeSupplierDetail> HomeSupplierDetails
+		{
+			get
+			{
+				return this.LoadTree<HomeSupplierDetail>();
+			}
+		}
+		public Tree<HomeTestimony> HomeTestimonys
+		{
+			get
+			{
+				return this.LoadTree<HomeTestimony>();
+			}
+		}
+		public Tree<HomeContent> HomeContents
+		{
+			get
+			{
+				return this.LoadTree<HomeContent>();
+			}
+		}
+		public Tree<HomeContentDetail> HomeContentDetails
+		{
+			get
+			{
+				return this.LoadTree<HomeContentDetail>();
+			}
+		}
+		public Tree<Insurer> Insurers
+		{
+			get
+			{
+				return this.LoadTree<Insurer>();
+			}
+		}
+		public Tree<MasterData> MasterDatas
+		{
+			get
+			{
+				return this.LoadTree<MasterData>();
+			}
+		}
+		public Tree<NameValueData> NameValueDatas
+		{
+			get
+			{
+				return this.LoadTree<NameValueData>();
+			}
+		}
+		public Tree<Plan> Plans
+		{
+			get
+			{
+				return this.LoadTree<Plan>();
+			}
+		}
+		public Tree<Premium> Premiums
+		{
+			get
+			{
+				return this.LoadTree<Premium>();
+			}
+		}
+		public Tree<ProductContent> ProductContents
+		{
+			get
+			{
+				return this.LoadTree<ProductContent>();
+			}
+		}
+		public Tree<ProductDetail> ProductDetails
+		{
+			get
+			{
+				return this.LoadTree<ProductDetail>();
+			}
+		}
+		public Tree<ProductFee> ProductFees
+		{
+			get
+			{
+				return this.LoadTree<ProductFee>();
+			}
+		}
+		public Tree<QA> QAs
+		{
+			get
+			{
+				return this.LoadTree<QA>();
+			}
+		}
+		public Tree<QAs> QAss
+		{
+			get
+			{
+				return this.LoadTree<QAs>();
+			}
+		}
+		public Tree<Search> Searchs
+		{
+			get
+			{
+				return this.LoadTree<Search>();
+			}
+		}
+		public Tree<Service> Services
+		{
+			get
+			{
+				return this.LoadTree<Service>();
+			}
+		}
+		public Tree<Services> Servicess
+		{
+			get
+			{
+				return this.LoadTree<Services>();
+			}
+		}
+		public Tree<SiteMap> SiteMaps
+		{
+			get
+			{
+				return this.LoadTree<SiteMap>();
+			}
+		}
+		public Tree<Testimonial> Testimonials
+		{
+			get
+			{
+				return this.LoadTree<Testimonial>();
+			}
+		}
+	}
+
+	
+	/// <summary>
+	/// This is the Textpage document type for your site.
+	/// </summary>
+	[UmbracoInfo("WebPage")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class WebPage : DocTypeBase  {
+		public WebPage() {
+		}
+		
+		private String _Title;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("title", DisplayName = "Title", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.RaisePropertyChanging();
+					this._Title = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Title");
+				}
+			}
+		}
+		private String _SEOTitle;
+		/// <summary>
+		/// Alternate title for display in the window title area and for search engines.
+		/// </summary>
+		[UmbracoInfo("SEOTitle", DisplayName = "SEO Title", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String SEOTitle
+		{
+			get
+			{
+				return this._SEOTitle;
+			}
+			set
+			{
+				if ((this._SEOTitle != value))
+				{
+					this.RaisePropertyChanging();
+					this._SEOTitle = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("SEOTitle");
+				}
+			}
+		}
+		private String _MetaKeywords;
+		/// <summary>
+		/// Enter a comma seperated list of keywords.
+///warren, keyword, test
+		/// </summary>
+		[UmbracoInfo("metaKeywords", DisplayName = "Meta Keywords", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String MetaKeywords
+		{
+			get
+			{
+				return this._MetaKeywords;
+			}
+			set
+			{
+				if ((this._MetaKeywords != value))
+				{
+					this.RaisePropertyChanging();
+					this._MetaKeywords = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("MetaKeywords");
+				}
+			}
+		}
+		private String _MetaDescription;
+		/// <summary>
+		/// Enter the description for the page.
+		/// </summary>
+		[UmbracoInfo("metaDescription", DisplayName = "Meta Description", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String MetaDescription
+		{
+			get
+			{
+				return this._MetaDescription;
+			}
+			set
+			{
+				if ((this._MetaDescription != value))
+				{
+					this.RaisePropertyChanging();
+					this._MetaDescription = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("MetaDescription");
+				}
+			}
+		}
+		private Int32? _UmbracoRedirect;
+		/// <summary>
+		/// Pick a node you wish to redirect to if the user lands on this node.
+		/// </summary>
+		[UmbracoInfo("umbracoRedirect", DisplayName = " Umbraco Redirect", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? UmbracoRedirect
+		{
+			get
+			{
+				return this._UmbracoRedirect;
+			}
+			set
+			{
+				if ((this._UmbracoRedirect != value))
+				{
+					this.RaisePropertyChanging();
+					this._UmbracoRedirect = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("UmbracoRedirect");
+				}
+			}
+		}
+		private Int32? _SitemapIndex;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("sitemapIndex", DisplayName = "Sitemap Index", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? SitemapIndex
+		{
+			get
+			{
+				return this._SitemapIndex;
+			}
+			set
+			{
+				if ((this._SitemapIndex != value))
+				{
+					this.RaisePropertyChanging();
+					this._SitemapIndex = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("SitemapIndex");
+				}
+			}
+		}
+		private Int32? _UmbracoNaviHide;
+		/// <summary>
+		/// Use this property if you wish to hide this page in the navigation.
+		/// </summary>
+		[UmbracoInfo("umbracoNaviHide", DisplayName = "Hide in Navi", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? UmbracoNaviHide
+		{
+			get
+			{
+				return this._UmbracoNaviHide;
+			}
+			set
+			{
+				if ((this._UmbracoNaviHide != value))
+				{
+					this.RaisePropertyChanging();
+					this._UmbracoNaviHide = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("UmbracoNaviHide");
+				}
+			}
+		}
+		private Int32? _HideInSitemap;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("hideInSitemap", DisplayName = "Hide In Sitemap", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? HideInSitemap
+		{
+			get
+			{
+				return this._HideInSitemap;
+			}
+			set
+			{
+				if ((this._HideInSitemap != value))
+				{
+					this.RaisePropertyChanging();
+					this._HideInSitemap = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("HideInSitemap");
+				}
+			}
+		}
+		private String _UmbracoUrlName;
+		/// <summary>
+		/// If you wish to change the URL of the node without changing the node name fill this in.
+///
+///eg: warren
+		/// </summary>
+		[UmbracoInfo("umbracoUrlName", DisplayName = "Umbraco URL Name", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String UmbracoUrlName
+		{
+			get
+			{
+				return this._UmbracoUrlName;
+			}
+			set
+			{
+				if ((this._UmbracoUrlName != value))
+				{
+					this.RaisePropertyChanging();
+					this._UmbracoUrlName = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("UmbracoUrlName");
+				}
+			}
+		}
+		private String _UmbracoUrlAlias;
+		/// <summary>
+		/// Use this to give a node multiple urls.
+///
+///eg: home,homepage/another-level
+		/// </summary>
+		[UmbracoInfo("umbracoUrlAlias", DisplayName = "Umbraco URL Alias", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String UmbracoUrlAlias
+		{
+			get
+			{
+				return this._UmbracoUrlAlias;
+			}
+			set
+			{
+				if ((this._UmbracoUrlAlias != value))
+				{
+					this.RaisePropertyChanging();
+					this._UmbracoUrlAlias = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("UmbracoUrlAlias");
+				}
+			}
+		}
+		
+		private AssociationTree<WebPage> _WebPages;
+		public AssociationTree<WebPage> WebPages
+		{
+			get
+			{
+				if ((this._WebPages == null))
+				{
+					this._WebPages = this.ChildrenOfType<WebPage>();
+				}
+				return this._WebPages;
+			}
+			set
+			{
+				this._WebPages = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("ContentPage")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class ContentPage : WebPage  {
+		public ContentPage() {
+		}
+		
+		private String _Images;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("images", DisplayName = "Images", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Images
+		{
+			get
+			{
+				return this._Images;
+			}
+			set
+			{
+				if ((this._Images != value))
+				{
+					this.RaisePropertyChanging();
+					this._Images = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Images");
+				}
+			}
+		}
+		
+		private AssociationTree<ContentPage> _ContentPages;
+		public AssociationTree<ContentPage> ContentPages
+		{
+			get
+			{
+				if ((this._ContentPages == null))
+				{
+					this._ContentPages = this.ChildrenOfType<ContentPage>();
+				}
+				return this._ContentPages;
+			}
+			set
+			{
+				this._ContentPages = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("AdvImage")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class AdvImage : WebPage  {
+		public AdvImage() {
+		}
+		
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("AdvImages")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class AdvImages : WebPage  {
+		public AdvImages() {
+		}
+		
+		
+		private AssociationTree<AdvImage> _AdvImages;
+		public AssociationTree<AdvImage> AdvImages
+		{
+			get
+			{
+				if ((this._AdvImages == null))
+				{
+					this._AdvImages = this.ChildrenOfType<AdvImage>();
+				}
+				return this._AdvImages;
+			}
+			set
+			{
+				this._AdvImages = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("ApplyFormPage")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class ApplyFormPage : WebPage  {
+		public ApplyFormPage() {
+		}
+		
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("ChatSetting")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class ChatSetting : DocTypeBase  {
+		public ChatSetting() {
+		}
+		
+		private String _ProfileId;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("profileId", DisplayName = "Profile Id", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String ProfileId
+		{
+			get
+			{
+				return this._ProfileId;
+			}
+			set
+			{
+				if ((this._ProfileId != value))
+				{
+					this.RaisePropertyChanging();
+					this._ProfileId = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("ProfileId");
+				}
+			}
+		}
+		private String _WelcomeMsg;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("welcomeMsg", DisplayName = "WelcomeMsg", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String WelcomeMsg
+		{
+			get
+			{
+				return this._WelcomeMsg;
+			}
+			set
+			{
+				if ((this._WelcomeMsg != value))
+				{
+					this.RaisePropertyChanging();
+					this._WelcomeMsg = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("WelcomeMsg");
+				}
+			}
+		}
+		private String _NotAvailableText;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("notAvailableText", DisplayName = "NotAvailableText", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String NotAvailableText
+		{
+			get
+			{
+				return this._NotAvailableText;
+			}
+			set
+			{
+				if ((this._NotAvailableText != value))
+				{
+					this.RaisePropertyChanging();
+					this._NotAvailableText = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("NotAvailableText");
+				}
+			}
+		}
+		private String _OfflineMessage;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("offlineMessage", DisplayName = "OfflineMessage", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String OfflineMessage
+		{
+			get
+			{
+				return this._OfflineMessage;
+			}
+			set
+			{
+				if ((this._OfflineMessage != value))
+				{
+					this.RaisePropertyChanging();
+					this._OfflineMessage = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("OfflineMessage");
+				}
+			}
+		}
+		private String _BusyText;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("busyText", DisplayName = "BusyText", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String BusyText
+		{
+			get
+			{
+				return this._BusyText;
+			}
+			set
+			{
+				if ((this._BusyText != value))
+				{
+					this.RaisePropertyChanging();
+					this._BusyText = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("BusyText");
+				}
+			}
+		}
+		private String _BusyMessage;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("busyMessage", DisplayName = "BusyMessage", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String BusyMessage
+		{
+			get
+			{
+				return this._BusyMessage;
+			}
+			set
+			{
+				if ((this._BusyMessage != value))
+				{
+					this.RaisePropertyChanging();
+					this._BusyMessage = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("BusyMessage");
+				}
+			}
+		}
+		private String _BeforeChatText;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("beforeChatText", DisplayName = "BeforeChatText", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String BeforeChatText
+		{
+			get
+			{
+				return this._BeforeChatText;
+			}
+			set
+			{
+				if ((this._BeforeChatText != value))
+				{
+					this.RaisePropertyChanging();
+					this._BeforeChatText = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("BeforeChatText");
+				}
+			}
+		}
+		private String _InChatText;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("inChatText", DisplayName = "InChatText", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String InChatText
+		{
+			get
+			{
+				return this._InChatText;
+			}
+			set
+			{
+				if ((this._InChatText != value))
+				{
+					this.RaisePropertyChanging();
+					this._InChatText = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("InChatText");
+				}
+			}
+		}
+		private String _EmbebScript;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("embebScript", DisplayName = "EmbebScript", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmbebScript
+		{
+			get
+			{
+				return this._EmbebScript;
+			}
+			set
+			{
+				if ((this._EmbebScript != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmbebScript = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmbebScript");
+				}
+			}
+		}
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Client")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Client : WebPage  {
+		public Client() {
+		}
+		
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Clients")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Clients : WebPage  {
+		public Clients() {
+		}
+		
+		
+		private AssociationTree<Client> _Clients;
+		public AssociationTree<Client> Clients
+		{
+			get
+			{
+				if ((this._Clients == null))
+				{
+					this._Clients = this.ChildrenOfType<Client>();
+				}
+				return this._Clients;
+			}
+			set
+			{
+				this._Clients = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Company")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Company : WebPage  {
+		public Company() {
+		}
+		
+		private String _OverView;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("overView", DisplayName = "OverView", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String OverView
+		{
+			get
+			{
+				return this._OverView;
+			}
+			set
+			{
+				if ((this._OverView != value))
+				{
+					this.RaisePropertyChanging();
+					this._OverView = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("OverView");
+				}
+			}
+		}
+		private String _OutTeam;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("outTeam", DisplayName = "OutTeam", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String OutTeam
+		{
+			get
+			{
+				return this._OutTeam;
+			}
+			set
+			{
+				if ((this._OutTeam != value))
+				{
+					this.RaisePropertyChanging();
+					this._OutTeam = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("OutTeam");
+				}
+			}
+		}
+		private String _WhatWeDo;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("whatWeDo", DisplayName = "WhatWeDo", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String WhatWeDo
+		{
+			get
+			{
+				return this._WhatWeDo;
+			}
+			set
+			{
+				if ((this._WhatWeDo != value))
+				{
+					this.RaisePropertyChanging();
+					this._WhatWeDo = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("WhatWeDo");
+				}
+			}
+		}
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Consultant")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Consultant : DocTypeBase  {
+		public Consultant() {
+		}
+		
+		private String _Name;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("name", DisplayName = "Name", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.RaisePropertyChanging();
+					this._Name = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Name");
+				}
+			}
+		}
+		private String _ObjectId;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("objectId", DisplayName = "Object id", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String ObjectId
+		{
+			get
+			{
+				return this._ObjectId;
+			}
+			set
+			{
+				if ((this._ObjectId != value))
+				{
+					this.RaisePropertyChanging();
+					this._ObjectId = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("ObjectId");
+				}
+			}
+		}
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Contact")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Contact : WebPage  {
+		public Contact() {
+		}
+		
+		private String _ThankYouHeaderText;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("thankYouHeaderText", DisplayName = "Thank You Header", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String ThankYouHeaderText
+		{
+			get
+			{
+				return this._ThankYouHeaderText;
+			}
+			set
+			{
+				if ((this._ThankYouHeaderText != value))
+				{
+					this.RaisePropertyChanging();
+					this._ThankYouHeaderText = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("ThankYouHeaderText");
+				}
+			}
+		}
+		private String _ThankYouMessageText;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("thankYouMessageText", DisplayName = "Thank You Message", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String ThankYouMessageText
+		{
+			get
+			{
+				return this._ThankYouMessageText;
+			}
+			set
+			{
+				if ((this._ThankYouMessageText != value))
+				{
+					this.RaisePropertyChanging();
+					this._ThankYouMessageText = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("ThankYouMessageText");
+				}
+			}
+		}
+		private String _EmailTo;
+		/// <summary>
+		/// The email address that you want the form to be sent to.
+		/// </summary>
+		[UmbracoInfo("emailTo", DisplayName = "Email To", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmailTo
+		{
+			get
+			{
+				return this._EmailTo;
+			}
+			set
+			{
+				if ((this._EmailTo != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmailTo = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmailTo");
+				}
+			}
+		}
+		private String _EmailSubject;
+		/// <summary>
+		/// The subject of the email that will be sent to you.
+		/// </summary>
+		[UmbracoInfo("emailSubject", DisplayName = "Email Subject", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmailSubject
+		{
+			get
+			{
+				return this._EmailSubject;
+			}
+			set
+			{
+				if ((this._EmailSubject != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmailSubject = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmailSubject");
+				}
+			}
+		}
+		private String _EmailBody;
+		/// <summary>
+		/// Use placeholders [Name], [AddressLine1], [AddressLine2], [Email], [Message], [Time] and [Date]
+		/// </summary>
+		[UmbracoInfo("emailBody", DisplayName = "Email Message", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmailBody
+		{
+			get
+			{
+				return this._EmailBody;
+			}
+			set
+			{
+				if ((this._EmailBody != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmailBody = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmailBody");
+				}
+			}
+		}
+		private String _EmailReplyFrom;
+		/// <summary>
+		/// The email address that you want the automated reply to be sent from.
+		/// </summary>
+		[UmbracoInfo("emailReplyFrom", DisplayName = "Email Reply From", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmailReplyFrom
+		{
+			get
+			{
+				return this._EmailReplyFrom;
+			}
+			set
+			{
+				if ((this._EmailReplyFrom != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmailReplyFrom = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmailReplyFrom");
+				}
+			}
+		}
+		private String _EmailReplySubject;
+		/// <summary>
+		/// The subject of the email that will be sent as the automated reply.
+///
+		/// </summary>
+		[UmbracoInfo("emailReplySubject", DisplayName = "Email Reply Subject", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmailReplySubject
+		{
+			get
+			{
+				return this._EmailReplySubject;
+			}
+			set
+			{
+				if ((this._EmailReplySubject != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmailReplySubject = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmailReplySubject");
+				}
+			}
+		}
+		private String _EmailReplyBody;
+		/// <summary>
+		/// Use placeholder [Name]
+		/// </summary>
+		[UmbracoInfo("emailReplyBody", DisplayName = "Email Reply Body", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmailReplyBody
+		{
+			get
+			{
+				return this._EmailReplyBody;
+			}
+			set
+			{
+				if ((this._EmailReplyBody != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmailReplyBody = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmailReplyBody");
+				}
+			}
+		}
+		private Int32? _EnableSSL;
+		/// <summary>
+		/// Does your SMTP server require SSL?
+		/// </summary>
+		[UmbracoInfo("enableSSL", DisplayName = "Enable SSL", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? EnableSSL
+		{
+			get
+			{
+				return this._EnableSSL;
+			}
+			set
+			{
+				if ((this._EnableSSL != value))
+				{
+					this.RaisePropertyChanging();
+					this._EnableSSL = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EnableSSL");
+				}
+			}
+		}
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("ContactInformation")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class ContactInformation : WebPage  {
+		public ContactInformation() {
+		}
+		
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("ContactInformation_ContactPage")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class ContactInformation_ContactPage : WebPage  {
+		public ContactInformation_ContactPage() {
+		}
+		
+		private String _City;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("city", DisplayName = "City", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this.RaisePropertyChanging();
+					this._City = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("City");
+				}
+			}
+		}
+		private String _Address;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("address", DisplayName = "Address", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.RaisePropertyChanging();
+					this._Address = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Address");
+				}
+			}
+		}
+		private String _Tel;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("tel", DisplayName = "Tel", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Tel
+		{
+			get
+			{
+				return this._Tel;
+			}
+			set
+			{
+				if ((this._Tel != value))
+				{
+					this.RaisePropertyChanging();
+					this._Tel = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Tel");
+				}
+			}
+		}
+		private String _Fax;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("fax", DisplayName = "Fax", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Fax
+		{
+			get
+			{
+				return this._Fax;
+			}
+			set
+			{
+				if ((this._Fax != value))
+				{
+					this.RaisePropertyChanging();
+					this._Fax = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Fax");
+				}
+			}
+		}
+		private String _Email;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("email", DisplayName = "Email", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.RaisePropertyChanging();
+					this._Email = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Email");
+				}
+			}
+		}
+		private String _EmailTitle;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("emailTitle", DisplayName = "EmailTitle", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmailTitle
+		{
+			get
+			{
+				return this._EmailTitle;
+			}
+			set
+			{
+				if ((this._EmailTitle != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmailTitle = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmailTitle");
+				}
+			}
+		}
+		private String _WorkingTime;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("workingTime", DisplayName = "Working time", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String WorkingTime
+		{
+			get
+			{
+				return this._WorkingTime;
+			}
+			set
+			{
+				if ((this._WorkingTime != value))
+				{
+					this.RaisePropertyChanging();
+					this._WorkingTime = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("WorkingTime");
+				}
+			}
+		}
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Contacts")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Contacts : WebPage  {
+		public Contacts() {
+		}
+		
+		
+		private AssociationTree<ContactInformation> _ContactInformations;
+		public AssociationTree<ContactInformation> ContactInformations
+		{
+			get
+			{
+				if ((this._ContactInformations == null))
+				{
+					this._ContactInformations = this.ChildrenOfType<ContactInformation>();
+				}
+				return this._ContactInformations;
+			}
+			set
+			{
+				this._ContactInformations = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Currency")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Currency : DocTypeBase  {
+		public Currency() {
+		}
+		
+		private String _Name;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("name", DisplayName = "Name", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.RaisePropertyChanging();
+					this._Name = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Name");
+				}
+			}
+		}
+		private String _ObjectId;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("objectId", DisplayName = "Object id", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String ObjectId
+		{
+			get
+			{
+				return this._ObjectId;
+			}
+			set
+			{
+				if ((this._ObjectId != value))
+				{
+					this.RaisePropertyChanging();
+					this._ObjectId = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("ObjectId");
+				}
+			}
+		}
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Document")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Document : DocTypeBase  {
+		public Document() {
+		}
+		
+		private String _Name;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("name", DisplayName = "Name", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.RaisePropertyChanging();
+					this._Name = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Name");
+				}
+			}
+		}
+		private String _Url;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("url", DisplayName = "Url", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Url
+		{
+			get
+			{
+				return this._Url;
+			}
+			set
+			{
+				if ((this._Url != value))
+				{
+					this.RaisePropertyChanging();
+					this._Url = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Url");
+				}
+			}
+		}
+		private String _ObjectId;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("objectId", DisplayName = "Object id", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String ObjectId
+		{
+			get
+			{
+				return this._ObjectId;
+			}
+			set
+			{
+				if ((this._ObjectId != value))
+				{
+					this.RaisePropertyChanging();
+					this._ObjectId = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("ObjectId");
+				}
+			}
+		}
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("EmailSetting")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class EmailSetting : DocTypeBase  {
+		public EmailSetting() {
+		}
+		
+		private String _EmailFrom;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("emailFrom", DisplayName = "Email From", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmailFrom
+		{
+			get
+			{
+				return this._EmailFrom;
+			}
+			set
+			{
+				if ((this._EmailFrom != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmailFrom = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmailFrom");
+				}
+			}
+		}
+		private String _EmailTo;
+		/// <summary>
+		/// You may enter multiple addresses on different lines
+		/// </summary>
+		[UmbracoInfo("emailTo", DisplayName = "Email To", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmailTo
+		{
+			get
+			{
+				return this._EmailTo;
+			}
+			set
+			{
+				if ((this._EmailTo != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmailTo = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmailTo");
+				}
+			}
+		}
+		private String _EmailSubject;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("emailSubject", DisplayName = "Email Subject", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmailSubject
+		{
+			get
+			{
+				return this._EmailSubject;
+			}
+			set
+			{
+				if ((this._EmailSubject != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmailSubject = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmailSubject");
+				}
+			}
+		}
+		private String _EmailBody;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("emailBody", DisplayName = "Email Body", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmailBody
+		{
+			get
+			{
+				return this._EmailBody;
+			}
+			set
+			{
+				if ((this._EmailBody != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmailBody = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmailBody");
+				}
+			}
+		}
+		private String _EmailCC;
+		/// <summary>
+		/// You may enter multiple addresses on different lines
+		/// </summary>
+		[UmbracoInfo("emailCC", DisplayName = "Email CC", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String EmailCC
+		{
+			get
+			{
+				return this._EmailCC;
+			}
+			set
+			{
+				if ((this._EmailCC != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmailCC = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmailCC");
+				}
+			}
+		}
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("EmailSettingContainer")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class EmailSettingContainer : DocTypeBase  {
+		public EmailSettingContainer() {
+		}
+		
+		
+		private AssociationTree<EmailSetting> _EmailSettings;
+		public AssociationTree<EmailSetting> EmailSettings
+		{
+			get
+			{
+				if ((this._EmailSettings == null))
+				{
+					this._EmailSettings = this.ChildrenOfType<EmailSetting>();
+				}
+				return this._EmailSettings;
+			}
+			set
+			{
+				this._EmailSettings = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("ExchangeRate")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class ExchangeRate : DocTypeBase  {
+		public ExchangeRate() {
+		}
+		
+		private String _Currency_from;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("currency_from", DisplayName = "Currency from", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Currency_from
+		{
+			get
+			{
+				return this._Currency_from;
+			}
+			set
+			{
+				if ((this._Currency_from != value))
+				{
+					this.RaisePropertyChanging();
+					this._Currency_from = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Currency_from");
+				}
+			}
+		}
+		private String _Currency_to;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("currency_to", DisplayName = "Currency to", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Currency_to
+		{
+			get
+			{
+				return this._Currency_to;
+			}
+			set
+			{
+				if ((this._Currency_to != value))
+				{
+					this.RaisePropertyChanging();
+					this._Currency_to = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Currency_to");
+				}
+			}
+		}
+		private String _From;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("from", DisplayName = "From", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String From
+		{
+			get
+			{
+				return this._From;
+			}
+			set
+			{
+				if ((this._From != value))
+				{
+					this.RaisePropertyChanging();
+					this._From = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("From");
+				}
+			}
+		}
+		private String _To;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("to", DisplayName = "To", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String To
+		{
+			get
+			{
+				return this._To;
+			}
+			set
+			{
+				if ((this._To != value))
+				{
+					this.RaisePropertyChanging();
+					this._To = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("To");
+				}
+			}
+		}
+		private String _ObjectId;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("objectId", DisplayName = "Object id", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String ObjectId
+		{
+			get
+			{
+				return this._ObjectId;
+			}
+			set
+			{
+				if ((this._ObjectId != value))
+				{
+					this.RaisePropertyChanging();
+					this._ObjectId = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("ObjectId");
+				}
+			}
+		}
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("ExternalReference")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class ExternalReference : WebPage  {
+		public ExternalReference() {
+		}
+		
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Fee")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Fee : DocTypeBase  {
+		public Fee() {
+		}
+		
+		private String _Range;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("range", DisplayName = "Range", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Range
+		{
+			get
+			{
+				return this._Range;
+			}
+			set
+			{
+				if ((this._Range != value))
+				{
+					this.RaisePropertyChanging();
+					this._Range = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Range");
+				}
+			}
+		}
+		private String _Fees;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("fees", DisplayName = "Fees", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Fees
+		{
+			get
+			{
+				return this._Fees;
+			}
+			set
+			{
+				if ((this._Fees != value))
+				{
+					this.RaisePropertyChanging();
+					this._Fees = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Fees");
+				}
+			}
+		}
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Home")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Home : WebPage  {
+		public Home() {
+		}
+		
+		private String _SiteName;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("siteName", DisplayName = "Site Name", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String SiteName
+		{
+			get
+			{
+				return this._SiteName;
+			}
+			set
+			{
+				if ((this._SiteName != value))
+				{
+					this.RaisePropertyChanging();
+					this._SiteName = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("SiteName");
+				}
+			}
+		}
+		private String _SlideShowImages;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("slideShowImages", DisplayName = "SlideShowImages", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String SlideShowImages
+		{
+			get
+			{
+				return this._SlideShowImages;
+			}
+			set
+			{
+				if ((this._SlideShowImages != value))
+				{
+					this.RaisePropertyChanging();
+					this._SlideShowImages = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("SlideShowImages");
+				}
+			}
+		}
+		
+		private AssociationTree<ContentPage> _ContentPages;
+		public AssociationTree<ContentPage> ContentPages
+		{
+			get
+			{
+				if ((this._ContentPages == null))
+				{
+					this._ContentPages = this.ChildrenOfType<ContentPage>();
+				}
+				return this._ContentPages;
+			}
+			set
+			{
+				this._ContentPages = value;
+			}
+		}
+		private AssociationTree<ApplyFormPage> _ApplyFormPages;
+		public AssociationTree<ApplyFormPage> ApplyFormPages
+		{
+			get
+			{
+				if ((this._ApplyFormPages == null))
+				{
+					this._ApplyFormPages = this.ChildrenOfType<ApplyFormPage>();
+				}
+				return this._ApplyFormPages;
+			}
+			set
+			{
+				this._ApplyFormPages = value;
+			}
+		}
+		private AssociationTree<Clients> _Clientss;
+		public AssociationTree<Clients> Clientss
+		{
+			get
+			{
+				if ((this._Clientss == null))
+				{
+					this._Clientss = this.ChildrenOfType<Clients>();
+				}
+				return this._Clientss;
+			}
+			set
+			{
+				this._Clientss = value;
+			}
+		}
+		private AssociationTree<Company> _Companys;
+		public AssociationTree<Company> Companys
+		{
+			get
+			{
+				if ((this._Companys == null))
+				{
+					this._Companys = this.ChildrenOfType<Company>();
+				}
+				return this._Companys;
+			}
+			set
+			{
+				this._Companys = value;
+			}
+		}
+		private AssociationTree<Contact> _Contacts;
+		public AssociationTree<Contact> Contacts
+		{
+			get
+			{
+				if ((this._Contacts == null))
+				{
+					this._Contacts = this.ChildrenOfType<Contact>();
+				}
+				return this._Contacts;
+			}
+			set
+			{
+				this._Contacts = value;
+			}
+		}
+		private AssociationTree<Contacts> _Contactss;
+		public AssociationTree<Contacts> Contactss
+		{
+			get
+			{
+				if ((this._Contactss == null))
+				{
+					this._Contactss = this.ChildrenOfType<Contacts>();
+				}
+				return this._Contactss;
+			}
+			set
+			{
+				this._Contactss = value;
+			}
+		}
+		private AssociationTree<Home> _Homes;
+		public AssociationTree<Home> Homes
+		{
+			get
+			{
+				if ((this._Homes == null))
+				{
+					this._Homes = this.ChildrenOfType<Home>();
+				}
+				return this._Homes;
+			}
+			set
+			{
+				this._Homes = value;
+			}
+		}
+		private AssociationTree<HomeTestimony> _HomeTestimonys;
+		public AssociationTree<HomeTestimony> HomeTestimonys
+		{
+			get
+			{
+				if ((this._HomeTestimonys == null))
+				{
+					this._HomeTestimonys = this.ChildrenOfType<HomeTestimony>();
+				}
+				return this._HomeTestimonys;
+			}
+			set
+			{
+				this._HomeTestimonys = value;
+			}
+		}
+		private AssociationTree<HomeContent> _HomeContents;
+		public AssociationTree<HomeContent> HomeContents
+		{
+			get
+			{
+				if ((this._HomeContents == null))
+				{
+					this._HomeContents = this.ChildrenOfType<HomeContent>();
+				}
+				return this._HomeContents;
+			}
+			set
+			{
+				this._HomeContents = value;
+			}
+		}
+		private AssociationTree<ProductContent> _ProductContents;
+		public AssociationTree<ProductContent> ProductContents
+		{
+			get
+			{
+				if ((this._ProductContents == null))
+				{
+					this._ProductContents = this.ChildrenOfType<ProductContent>();
+				}
+				return this._ProductContents;
+			}
+			set
+			{
+				this._ProductContents = value;
+			}
+		}
+		private AssociationTree<QAs> _QAss;
+		public AssociationTree<QAs> QAss
+		{
+			get
+			{
+				if ((this._QAss == null))
+				{
+					this._QAss = this.ChildrenOfType<QAs>();
+				}
+				return this._QAss;
+			}
+			set
+			{
+				this._QAss = value;
+			}
+		}
+		private AssociationTree<Search> _Searchs;
+		public AssociationTree<Search> Searchs
+		{
+			get
+			{
+				if ((this._Searchs == null))
+				{
+					this._Searchs = this.ChildrenOfType<Search>();
+				}
+				return this._Searchs;
+			}
+			set
+			{
+				this._Searchs = value;
+			}
+		}
+		private AssociationTree<Services> _Servicess;
+		public AssociationTree<Services> Servicess
+		{
+			get
+			{
+				if ((this._Servicess == null))
+				{
+					this._Servicess = this.ChildrenOfType<Services>();
+				}
+				return this._Servicess;
+			}
+			set
+			{
+				this._Servicess = value;
+			}
+		}
+		private AssociationTree<SiteMap> _SiteMaps;
+		public AssociationTree<SiteMap> SiteMaps
+		{
+			get
+			{
+				if ((this._SiteMaps == null))
+				{
+					this._SiteMaps = this.ChildrenOfType<SiteMap>();
+				}
+				return this._SiteMaps;
+			}
+			set
+			{
+				this._SiteMaps = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("HomePeopleSaying")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class HomePeopleSaying : HomeTestimony  {
+		public HomePeopleSaying() {
+		}
+		
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("HomeSupplierDetail")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class HomeSupplierDetail : HomeTestimony  {
+		public HomeSupplierDetail() {
+		}
+		
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("HomeTestimony")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class HomeTestimony : WebPage  {
+		public HomeTestimony() {
+		}
+		
+		
+		private AssociationTree<HomePeopleSaying> _HomePeopleSayings;
+		public AssociationTree<HomePeopleSaying> HomePeopleSayings
+		{
+			get
+			{
+				if ((this._HomePeopleSayings == null))
+				{
+					this._HomePeopleSayings = this.ChildrenOfType<HomePeopleSaying>();
+				}
+				return this._HomePeopleSayings;
+			}
+			set
+			{
+				this._HomePeopleSayings = value;
+			}
+		}
+		private AssociationTree<HomeSupplierDetail> _HomeSupplierDetails;
+		public AssociationTree<HomeSupplierDetail> HomeSupplierDetails
+		{
+			get
+			{
+				if ((this._HomeSupplierDetails == null))
+				{
+					this._HomeSupplierDetails = this.ChildrenOfType<HomeSupplierDetail>();
+				}
+				return this._HomeSupplierDetails;
+			}
+			set
+			{
+				this._HomeSupplierDetails = value;
+			}
+		}
+		private AssociationTree<HomeTestimony> _HomeTestimonys;
+		public AssociationTree<HomeTestimony> HomeTestimonys
+		{
+			get
+			{
+				if ((this._HomeTestimonys == null))
+				{
+					this._HomeTestimonys = this.ChildrenOfType<HomeTestimony>();
+				}
+				return this._HomeTestimonys;
+			}
+			set
+			{
+				this._HomeTestimonys = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("HomeContent")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class HomeContent : WebPage  {
+		public HomeContent() {
+		}
+		
+		
+		private AssociationTree<HomeContentDetail> _HomeContentDetails;
+		public AssociationTree<HomeContentDetail> HomeContentDetails
+		{
+			get
+			{
+				if ((this._HomeContentDetails == null))
+				{
+					this._HomeContentDetails = this.ChildrenOfType<HomeContentDetail>();
+				}
+				return this._HomeContentDetails;
+			}
+			set
+			{
+				this._HomeContentDetails = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("HomeContentDetail")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class HomeContentDetail : HomeContent  {
+		public HomeContentDetail() {
+		}
+		
+		
+		private AssociationTree<HomeContentDetail> _HomeContentDetails;
+		public AssociationTree<HomeContentDetail> HomeContentDetails
+		{
+			get
+			{
+				if ((this._HomeContentDetails == null))
+				{
+					this._HomeContentDetails = this.ChildrenOfType<HomeContentDetail>();
+				}
+				return this._HomeContentDetails;
+			}
+			set
+			{
+				this._HomeContentDetails = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Insurer")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Insurer : DocTypeBase  {
+		public Insurer() {
+		}
+		
+		private String _Name;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("name", DisplayName = "Name", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.RaisePropertyChanging();
+					this._Name = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Name");
+				}
+			}
+		}
+		private String _Document;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("document", DisplayName = "Document", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Document
+		{
+			get
+			{
+				return this._Document;
+			}
+			set
+			{
+				if ((this._Document != value))
+				{
+					this.RaisePropertyChanging();
+					this._Document = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Document");
+				}
+			}
+		}
+		private String _Logo;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("logo", DisplayName = "Logo", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Logo
+		{
+			get
+			{
+				return this._Logo;
+			}
+			set
+			{
+				if ((this._Logo != value))
+				{
+					this.RaisePropertyChanging();
+					this._Logo = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Logo");
+				}
+			}
+		}
+		private String _ObjectId;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("objectId", DisplayName = "Object id", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String ObjectId
+		{
+			get
+			{
+				return this._ObjectId;
+			}
+			set
+			{
+				if ((this._ObjectId != value))
+				{
+					this.RaisePropertyChanging();
+					this._ObjectId = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("ObjectId");
+				}
+			}
+		}
+		
+		private AssociationTree<Plan> _Plans;
+		public AssociationTree<Plan> Plans
+		{
+			get
+			{
+				if ((this._Plans == null))
+				{
+					this._Plans = this.ChildrenOfType<Plan>();
+				}
+				return this._Plans;
+			}
+			set
+			{
+				this._Plans = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("MasterData")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class MasterData : DocTypeBase  {
+		public MasterData() {
+		}
+		
+		
+		private AssociationTree<WebPage> _WebPages;
+		public AssociationTree<WebPage> WebPages
+		{
+			get
+			{
+				if ((this._WebPages == null))
+				{
+					this._WebPages = this.ChildrenOfType<WebPage>();
+				}
+				return this._WebPages;
+			}
+			set
+			{
+				this._WebPages = value;
+			}
+		}
+		private AssociationTree<ContentPage> _ContentPages;
+		public AssociationTree<ContentPage> ContentPages
+		{
+			get
+			{
+				if ((this._ContentPages == null))
+				{
+					this._ContentPages = this.ChildrenOfType<ContentPage>();
+				}
+				return this._ContentPages;
+			}
+			set
+			{
+				this._ContentPages = value;
+			}
+		}
+		private AssociationTree<AdvImage> _AdvImages;
+		public AssociationTree<AdvImage> AdvImages
+		{
+			get
+			{
+				if ((this._AdvImages == null))
+				{
+					this._AdvImages = this.ChildrenOfType<AdvImage>();
+				}
+				return this._AdvImages;
+			}
+			set
+			{
+				this._AdvImages = value;
+			}
+		}
+		private AssociationTree<AdvImages> _AdvImagess;
+		public AssociationTree<AdvImages> AdvImagess
+		{
+			get
+			{
+				if ((this._AdvImagess == null))
+				{
+					this._AdvImagess = this.ChildrenOfType<AdvImages>();
+				}
+				return this._AdvImagess;
+			}
+			set
+			{
+				this._AdvImagess = value;
+			}
+		}
+		private AssociationTree<ChatSetting> _ChatSettings;
+		public AssociationTree<ChatSetting> ChatSettings
+		{
+			get
+			{
+				if ((this._ChatSettings == null))
+				{
+					this._ChatSettings = this.ChildrenOfType<ChatSetting>();
+				}
+				return this._ChatSettings;
+			}
+			set
+			{
+				this._ChatSettings = value;
+			}
+		}
+		private AssociationTree<Client> _Clients;
+		public AssociationTree<Client> Clients
+		{
+			get
+			{
+				if ((this._Clients == null))
+				{
+					this._Clients = this.ChildrenOfType<Client>();
+				}
+				return this._Clients;
+			}
+			set
+			{
+				this._Clients = value;
+			}
+		}
+		private AssociationTree<Clients> _Clientss;
+		public AssociationTree<Clients> Clientss
+		{
+			get
+			{
+				if ((this._Clientss == null))
+				{
+					this._Clientss = this.ChildrenOfType<Clients>();
+				}
+				return this._Clientss;
+			}
+			set
+			{
+				this._Clientss = value;
+			}
+		}
+		private AssociationTree<Company> _Companys;
+		public AssociationTree<Company> Companys
+		{
+			get
+			{
+				if ((this._Companys == null))
+				{
+					this._Companys = this.ChildrenOfType<Company>();
+				}
+				return this._Companys;
+			}
+			set
+			{
+				this._Companys = value;
+			}
+		}
+		private AssociationTree<Consultant> _Consultants;
+		public AssociationTree<Consultant> Consultants
+		{
+			get
+			{
+				if ((this._Consultants == null))
+				{
+					this._Consultants = this.ChildrenOfType<Consultant>();
+				}
+				return this._Consultants;
+			}
+			set
+			{
+				this._Consultants = value;
+			}
+		}
+		private AssociationTree<Contact> _Contacts;
+		public AssociationTree<Contact> Contacts
+		{
+			get
+			{
+				if ((this._Contacts == null))
+				{
+					this._Contacts = this.ChildrenOfType<Contact>();
+				}
+				return this._Contacts;
+			}
+			set
+			{
+				this._Contacts = value;
+			}
+		}
+		private AssociationTree<ContactInformation> _ContactInformations;
+		public AssociationTree<ContactInformation> ContactInformations
+		{
+			get
+			{
+				if ((this._ContactInformations == null))
+				{
+					this._ContactInformations = this.ChildrenOfType<ContactInformation>();
+				}
+				return this._ContactInformations;
+			}
+			set
+			{
+				this._ContactInformations = value;
+			}
+		}
+		private AssociationTree<ContactInformation_ContactPage> _ContactInformation_ContactPages;
+		public AssociationTree<ContactInformation_ContactPage> ContactInformation_ContactPages
+		{
+			get
+			{
+				if ((this._ContactInformation_ContactPages == null))
+				{
+					this._ContactInformation_ContactPages = this.ChildrenOfType<ContactInformation_ContactPage>();
+				}
+				return this._ContactInformation_ContactPages;
+			}
+			set
+			{
+				this._ContactInformation_ContactPages = value;
+			}
+		}
+		private AssociationTree<Contacts> _Contactss;
+		public AssociationTree<Contacts> Contactss
+		{
+			get
+			{
+				if ((this._Contactss == null))
+				{
+					this._Contactss = this.ChildrenOfType<Contacts>();
+				}
+				return this._Contactss;
+			}
+			set
+			{
+				this._Contactss = value;
+			}
+		}
+		private AssociationTree<Currency> _Currencys;
+		public AssociationTree<Currency> Currencys
+		{
+			get
+			{
+				if ((this._Currencys == null))
+				{
+					this._Currencys = this.ChildrenOfType<Currency>();
+				}
+				return this._Currencys;
+			}
+			set
+			{
+				this._Currencys = value;
+			}
+		}
+		private AssociationTree<Document> _Documents;
+		public AssociationTree<Document> Documents
+		{
+			get
+			{
+				if ((this._Documents == null))
+				{
+					this._Documents = this.ChildrenOfType<Document>();
+				}
+				return this._Documents;
+			}
+			set
+			{
+				this._Documents = value;
+			}
+		}
+		private AssociationTree<EmailSetting> _EmailSettings;
+		public AssociationTree<EmailSetting> EmailSettings
+		{
+			get
+			{
+				if ((this._EmailSettings == null))
+				{
+					this._EmailSettings = this.ChildrenOfType<EmailSetting>();
+				}
+				return this._EmailSettings;
+			}
+			set
+			{
+				this._EmailSettings = value;
+			}
+		}
+		private AssociationTree<EmailSettingContainer> _EmailSettingContainers;
+		public AssociationTree<EmailSettingContainer> EmailSettingContainers
+		{
+			get
+			{
+				if ((this._EmailSettingContainers == null))
+				{
+					this._EmailSettingContainers = this.ChildrenOfType<EmailSettingContainer>();
+				}
+				return this._EmailSettingContainers;
+			}
+			set
+			{
+				this._EmailSettingContainers = value;
+			}
+		}
+		private AssociationTree<ExchangeRate> _ExchangeRates;
+		public AssociationTree<ExchangeRate> ExchangeRates
+		{
+			get
+			{
+				if ((this._ExchangeRates == null))
+				{
+					this._ExchangeRates = this.ChildrenOfType<ExchangeRate>();
+				}
+				return this._ExchangeRates;
+			}
+			set
+			{
+				this._ExchangeRates = value;
+			}
+		}
+		private AssociationTree<ExternalReference> _ExternalReferences;
+		public AssociationTree<ExternalReference> ExternalReferences
+		{
+			get
+			{
+				if ((this._ExternalReferences == null))
+				{
+					this._ExternalReferences = this.ChildrenOfType<ExternalReference>();
+				}
+				return this._ExternalReferences;
+			}
+			set
+			{
+				this._ExternalReferences = value;
+			}
+		}
+		private AssociationTree<Home> _Homes;
+		public AssociationTree<Home> Homes
+		{
+			get
+			{
+				if ((this._Homes == null))
+				{
+					this._Homes = this.ChildrenOfType<Home>();
+				}
+				return this._Homes;
+			}
+			set
+			{
+				this._Homes = value;
+			}
+		}
+		private AssociationTree<HomePeopleSaying> _HomePeopleSayings;
+		public AssociationTree<HomePeopleSaying> HomePeopleSayings
+		{
+			get
+			{
+				if ((this._HomePeopleSayings == null))
+				{
+					this._HomePeopleSayings = this.ChildrenOfType<HomePeopleSaying>();
+				}
+				return this._HomePeopleSayings;
+			}
+			set
+			{
+				this._HomePeopleSayings = value;
+			}
+		}
+		private AssociationTree<HomeSupplierDetail> _HomeSupplierDetails;
+		public AssociationTree<HomeSupplierDetail> HomeSupplierDetails
+		{
+			get
+			{
+				if ((this._HomeSupplierDetails == null))
+				{
+					this._HomeSupplierDetails = this.ChildrenOfType<HomeSupplierDetail>();
+				}
+				return this._HomeSupplierDetails;
+			}
+			set
+			{
+				this._HomeSupplierDetails = value;
+			}
+		}
+		private AssociationTree<HomeTestimony> _HomeTestimonys;
+		public AssociationTree<HomeTestimony> HomeTestimonys
+		{
+			get
+			{
+				if ((this._HomeTestimonys == null))
+				{
+					this._HomeTestimonys = this.ChildrenOfType<HomeTestimony>();
+				}
+				return this._HomeTestimonys;
+			}
+			set
+			{
+				this._HomeTestimonys = value;
+			}
+		}
+		private AssociationTree<HomeContent> _HomeContents;
+		public AssociationTree<HomeContent> HomeContents
+		{
+			get
+			{
+				if ((this._HomeContents == null))
+				{
+					this._HomeContents = this.ChildrenOfType<HomeContent>();
+				}
+				return this._HomeContents;
+			}
+			set
+			{
+				this._HomeContents = value;
+			}
+		}
+		private AssociationTree<HomeContentDetail> _HomeContentDetails;
+		public AssociationTree<HomeContentDetail> HomeContentDetails
+		{
+			get
+			{
+				if ((this._HomeContentDetails == null))
+				{
+					this._HomeContentDetails = this.ChildrenOfType<HomeContentDetail>();
+				}
+				return this._HomeContentDetails;
+			}
+			set
+			{
+				this._HomeContentDetails = value;
+			}
+		}
+		private AssociationTree<Insurer> _Insurers;
+		public AssociationTree<Insurer> Insurers
+		{
+			get
+			{
+				if ((this._Insurers == null))
+				{
+					this._Insurers = this.ChildrenOfType<Insurer>();
+				}
+				return this._Insurers;
+			}
+			set
+			{
+				this._Insurers = value;
+			}
+		}
+		private AssociationTree<MasterData> _MasterDatas;
+		public AssociationTree<MasterData> MasterDatas
+		{
+			get
+			{
+				if ((this._MasterDatas == null))
+				{
+					this._MasterDatas = this.ChildrenOfType<MasterData>();
+				}
+				return this._MasterDatas;
+			}
+			set
+			{
+				this._MasterDatas = value;
+			}
+		}
+		private AssociationTree<NameValueData> _NameValueDatas;
+		public AssociationTree<NameValueData> NameValueDatas
+		{
+			get
+			{
+				if ((this._NameValueDatas == null))
+				{
+					this._NameValueDatas = this.ChildrenOfType<NameValueData>();
+				}
+				return this._NameValueDatas;
+			}
+			set
+			{
+				this._NameValueDatas = value;
+			}
+		}
+		private AssociationTree<Plan> _Plans;
+		public AssociationTree<Plan> Plans
+		{
+			get
+			{
+				if ((this._Plans == null))
+				{
+					this._Plans = this.ChildrenOfType<Plan>();
+				}
+				return this._Plans;
+			}
+			set
+			{
+				this._Plans = value;
+			}
+		}
+		private AssociationTree<Premium> _Premiums;
+		public AssociationTree<Premium> Premiums
+		{
+			get
+			{
+				if ((this._Premiums == null))
+				{
+					this._Premiums = this.ChildrenOfType<Premium>();
+				}
+				return this._Premiums;
+			}
+			set
+			{
+				this._Premiums = value;
+			}
+		}
+		private AssociationTree<QA> _QAs;
+		public AssociationTree<QA> QAs
+		{
+			get
+			{
+				if ((this._QAs == null))
+				{
+					this._QAs = this.ChildrenOfType<QA>();
+				}
+				return this._QAs;
+			}
+			set
+			{
+				this._QAs = value;
+			}
+		}
+		private AssociationTree<QAs> _QAss;
+		public AssociationTree<QAs> QAss
+		{
+			get
+			{
+				if ((this._QAss == null))
+				{
+					this._QAss = this.ChildrenOfType<QAs>();
+				}
+				return this._QAss;
+			}
+			set
+			{
+				this._QAss = value;
+			}
+		}
+		private AssociationTree<Search> _Searchs;
+		public AssociationTree<Search> Searchs
+		{
+			get
+			{
+				if ((this._Searchs == null))
+				{
+					this._Searchs = this.ChildrenOfType<Search>();
+				}
+				return this._Searchs;
+			}
+			set
+			{
+				this._Searchs = value;
+			}
+		}
+		private AssociationTree<Service> _Services;
+		public AssociationTree<Service> Services
+		{
+			get
+			{
+				if ((this._Services == null))
+				{
+					this._Services = this.ChildrenOfType<Service>();
+				}
+				return this._Services;
+			}
+			set
+			{
+				this._Services = value;
+			}
+		}
+		private AssociationTree<Services> _Servicess;
+		public AssociationTree<Services> Servicess
+		{
+			get
+			{
+				if ((this._Servicess == null))
+				{
+					this._Servicess = this.ChildrenOfType<Services>();
+				}
+				return this._Servicess;
+			}
+			set
+			{
+				this._Servicess = value;
+			}
+		}
+		private AssociationTree<SiteMap> _SiteMaps;
+		public AssociationTree<SiteMap> SiteMaps
+		{
+			get
+			{
+				if ((this._SiteMaps == null))
+				{
+					this._SiteMaps = this.ChildrenOfType<SiteMap>();
+				}
+				return this._SiteMaps;
+			}
+			set
+			{
+				this._SiteMaps = value;
+			}
+		}
+		private AssociationTree<Testimonial> _Testimonials;
+		public AssociationTree<Testimonial> Testimonials
+		{
+			get
+			{
+				if ((this._Testimonials == null))
+				{
+					this._Testimonials = this.ChildrenOfType<Testimonial>();
+				}
+				return this._Testimonials;
+			}
+			set
+			{
+				this._Testimonials = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("NameValueData")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class NameValueData : DocTypeBase  {
+		public NameValueData() {
+		}
+		
+		private String _Name;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("name", DisplayName = "Name", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.RaisePropertyChanging();
+					this._Name = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Name");
+				}
+			}
+		}
+		private String _DisplayName;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("displayName", DisplayName = "Display name", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String DisplayName
+		{
+			get
+			{
+				return this._DisplayName;
+			}
+			set
+			{
+				if ((this._DisplayName != value))
+				{
+					this.RaisePropertyChanging();
+					this._DisplayName = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("DisplayName");
+				}
+			}
+		}
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Plan")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Plan : DocTypeBase  {
+		public Plan() {
+		}
+		
+		private String _Name;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("name", DisplayName = "Name", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.RaisePropertyChanging();
+					this._Name = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Name");
+				}
+			}
+		}
+		private String _Description;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("description", DisplayName = "Description", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.RaisePropertyChanging();
+					this._Description = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Description");
+				}
+			}
+		}
+		private Int32 _Validity;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("validity", DisplayName = "Validity", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32 Validity
+		{
+			get
+			{
+				return this._Validity;
+			}
+			set
+			{
+				if ((this._Validity != value))
+				{
+					this.RaisePropertyChanging();
+					this._Validity = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Validity");
+				}
+			}
+		}
+		
+		private AssociationTree<Premium> _Premiums;
+		public AssociationTree<Premium> Premiums
+		{
+			get
+			{
+				if ((this._Premiums == null))
+				{
+					this._Premiums = this.ChildrenOfType<Premium>();
+				}
+				return this._Premiums;
+			}
+			set
+			{
+				this._Premiums = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Premium")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Premium : DocTypeBase  {
+		public Premium() {
+		}
+		
+		private String _Area;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("area", DisplayName = "Area", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this.RaisePropertyChanging();
+					this._Area = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Area");
+				}
+			}
+		}
+		private String _CoverLevel;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("coverLevel", DisplayName = "Cover level", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String CoverLevel
+		{
+			get
+			{
+				return this._CoverLevel;
+			}
+			set
+			{
+				if ((this._CoverLevel != value))
+				{
+					this.RaisePropertyChanging();
+					this._CoverLevel = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("CoverLevel");
+				}
+			}
+		}
+		private String _Excess;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("excess", DisplayName = "Excess", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Excess
+		{
+			get
+			{
+				return this._Excess;
+			}
+			set
+			{
+				if ((this._Excess != value))
+				{
+					this.RaisePropertyChanging();
+					this._Excess = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Excess");
+				}
+			}
+		}
+		private String _Currency;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("currency", DisplayName = "Currency", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Currency
+		{
+			get
+			{
+				return this._Currency;
+			}
+			set
+			{
+				if ((this._Currency != value))
+				{
+					this.RaisePropertyChanging();
+					this._Currency = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Currency");
+				}
+			}
+		}
+		private String _Description;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("description", DisplayName = "Description", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.RaisePropertyChanging();
+					this._Description = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Description");
+				}
+			}
+		}
+		private String _FeesList;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("feesList", DisplayName = "Fees list", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String FeesList
+		{
+			get
+			{
+				return this._FeesList;
+			}
+			set
+			{
+				if ((this._FeesList != value))
+				{
+					this.RaisePropertyChanging();
+					this._FeesList = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("FeesList");
+				}
+			}
+		}
+		private String _InsurancePlanId;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("insurancePlanId", DisplayName = "Insurance plan id", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String InsurancePlanId
+		{
+			get
+			{
+				return this._InsurancePlanId;
+			}
+			set
+			{
+				if ((this._InsurancePlanId != value))
+				{
+					this.RaisePropertyChanging();
+					this._InsurancePlanId = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("InsurancePlanId");
+				}
+			}
+		}
+		private String _Options;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("options", DisplayName = "Options", Mandatory = true)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Options
+		{
+			get
+			{
+				return this._Options;
+			}
+			set
+			{
+				if ((this._Options != value))
+				{
+					this.RaisePropertyChanging();
+					this._Options = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Options");
+				}
+			}
+		}
+		
+		private AssociationTree<Fee> _Fees;
+		public AssociationTree<Fee> Fees
+		{
+			get
+			{
+				if ((this._Fees == null))
+				{
+					this._Fees = this.ChildrenOfType<Fee>();
+				}
+				return this._Fees;
+			}
+			set
+			{
+				this._Fees = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("ProductContent")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class ProductContent : WebPage  {
+		public ProductContent() {
+		}
+		
+		
+		private AssociationTree<ProductDetail> _ProductDetails;
+		public AssociationTree<ProductDetail> ProductDetails
+		{
+			get
+			{
+				if ((this._ProductDetails == null))
+				{
+					this._ProductDetails = this.ChildrenOfType<ProductDetail>();
+				}
+				return this._ProductDetails;
+			}
+			set
+			{
+				this._ProductDetails = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("ProductDetail")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class ProductDetail : WebPage  {
+		public ProductDetail() {
+		}
+		
+		private String _Area;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("area", DisplayName = "Area", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this.RaisePropertyChanging();
+					this._Area = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Area");
+				}
+			}
+		}
+		private String _MaxBenefit;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("maxBenefit", DisplayName = "MaxBenefit", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String MaxBenefit
+		{
+			get
+			{
+				return this._MaxBenefit;
+			}
+			set
+			{
+				if ((this._MaxBenefit != value))
+				{
+					this.RaisePropertyChanging();
+					this._MaxBenefit = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("MaxBenefit");
+				}
+			}
+		}
+		private Int32? _Excess;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("excess", DisplayName = "Excess", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? Excess
+		{
+			get
+			{
+				return this._Excess;
+			}
+			set
+			{
+				if ((this._Excess != value))
+				{
+					this.RaisePropertyChanging();
+					this._Excess = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Excess");
+				}
+			}
+		}
+		private Int32? _InPatientDirectBilling;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("inPatientDirectBilling", DisplayName = "InPatientDirectBilling", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? InPatientDirectBilling
+		{
+			get
+			{
+				return this._InPatientDirectBilling;
+			}
+			set
+			{
+				if ((this._InPatientDirectBilling != value))
+				{
+					this.RaisePropertyChanging();
+					this._InPatientDirectBilling = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("InPatientDirectBilling");
+				}
+			}
+		}
+		private Int32? _EmergencyAssistance;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("emergencyAssistance", DisplayName = "EmergencyAssistance", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? EmergencyAssistance
+		{
+			get
+			{
+				return this._EmergencyAssistance;
+			}
+			set
+			{
+				if ((this._EmergencyAssistance != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmergencyAssistance = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmergencyAssistance");
+				}
+			}
+		}
+		private Int32? _ClaimsProcessing;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("claimsProcessing", DisplayName = "ClaimsProcessing", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? ClaimsProcessing
+		{
+			get
+			{
+				return this._ClaimsProcessing;
+			}
+			set
+			{
+				if ((this._ClaimsProcessing != value))
+				{
+					this.RaisePropertyChanging();
+					this._ClaimsProcessing = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("ClaimsProcessing");
+				}
+			}
+		}
+		private Int32? _ApplicationFee;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("applicationFee", DisplayName = "ApplicationFee", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? ApplicationFee
+		{
+			get
+			{
+				return this._ApplicationFee;
+			}
+			set
+			{
+				if ((this._ApplicationFee != value))
+				{
+					this.RaisePropertyChanging();
+					this._ApplicationFee = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("ApplicationFee");
+				}
+			}
+		}
+		private Int32? _MultilingualHelpline;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("multilingualHelpline", DisplayName = "MultilingualHelpline", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? MultilingualHelpline
+		{
+			get
+			{
+				return this._MultilingualHelpline;
+			}
+			set
+			{
+				if ((this._MultilingualHelpline != value))
+				{
+					this.RaisePropertyChanging();
+					this._MultilingualHelpline = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("MultilingualHelpline");
+				}
+			}
+		}
+		private Int32? _MedicalAdvisoryHelpline;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("medicalAdvisoryHelpline", DisplayName = "MedicalAdvisoryHelpline", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? MedicalAdvisoryHelpline
+		{
+			get
+			{
+				return this._MedicalAdvisoryHelpline;
+			}
+			set
+			{
+				if ((this._MedicalAdvisoryHelpline != value))
+				{
+					this.RaisePropertyChanging();
+					this._MedicalAdvisoryHelpline = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("MedicalAdvisoryHelpline");
+				}
+			}
+		}
+		private String _PolicyBrochure;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("policyBrochure", DisplayName = "PolicyBrochure", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String PolicyBrochure
+		{
+			get
+			{
+				return this._PolicyBrochure;
+			}
+			set
+			{
+				if ((this._PolicyBrochure != value))
+				{
+					this.RaisePropertyChanging();
+					this._PolicyBrochure = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("PolicyBrochure");
+				}
+			}
+		}
+		private String _Payment;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("payment", DisplayName = "Payment", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String Payment
+		{
+			get
+			{
+				return this._Payment;
+			}
+			set
+			{
+				if ((this._Payment != value))
+				{
+					this.RaisePropertyChanging();
+					this._Payment = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Payment");
+				}
+			}
+		}
+		private String _OverViewDescription;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("overViewDescription", DisplayName = "OverViewDescription", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual String OverViewDescription
+		{
+			get
+			{
+				return this._OverViewDescription;
+			}
+			set
+			{
+				if ((this._OverViewDescription != value))
+				{
+					this.RaisePropertyChanging();
+					this._OverViewDescription = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("OverViewDescription");
+				}
+			}
+		}
+		private Int32? _InPatient;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("inPatient", DisplayName = "InPatient", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? InPatient
+		{
+			get
+			{
+				return this._InPatient;
+			}
+			set
+			{
+				if ((this._InPatient != value))
+				{
+					this.RaisePropertyChanging();
+					this._InPatient = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("InPatient");
+				}
+			}
+		}
+		private Int32? _OutPatient;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("outPatient", DisplayName = "OutPatient", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? OutPatient
+		{
+			get
+			{
+				return this._OutPatient;
+			}
+			set
+			{
+				if ((this._OutPatient != value))
+				{
+					this.RaisePropertyChanging();
+					this._OutPatient = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("OutPatient");
+				}
+			}
+		}
+		private Int32? _Maternity;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("maternity", DisplayName = "Maternity", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? Maternity
+		{
+			get
+			{
+				return this._Maternity;
+			}
+			set
+			{
+				if ((this._Maternity != value))
+				{
+					this.RaisePropertyChanging();
+					this._Maternity = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Maternity");
+				}
+			}
+		}
+		private Int32? _Dental;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("dental", DisplayName = "Dental", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? Dental
+		{
+			get
+			{
+				return this._Dental;
+			}
+			set
+			{
+				if ((this._Dental != value))
+				{
+					this.RaisePropertyChanging();
+					this._Dental = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Dental");
+				}
+			}
+		}
+		private Int32? _WellBeing;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("wellBeing", DisplayName = "WellBeing", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? WellBeing
+		{
+			get
+			{
+				return this._WellBeing;
+			}
+			set
+			{
+				if ((this._WellBeing != value))
+				{
+					this.RaisePropertyChanging();
+					this._WellBeing = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("WellBeing");
+				}
+			}
+		}
+		private Int32? _Psychiatric;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("psychiatric", DisplayName = "Psychiatric ", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? Psychiatric
+		{
+			get
+			{
+				return this._Psychiatric;
+			}
+			set
+			{
+				if ((this._Psychiatric != value))
+				{
+					this.RaisePropertyChanging();
+					this._Psychiatric = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Psychiatric");
+				}
+			}
+		}
+		private Int32? _EmergencyEvacuation;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("emergencyEvacuation", DisplayName = "EmergencyEvacuation ", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? EmergencyEvacuation
+		{
+			get
+			{
+				return this._EmergencyEvacuation;
+			}
+			set
+			{
+				if ((this._EmergencyEvacuation != value))
+				{
+					this.RaisePropertyChanging();
+					this._EmergencyEvacuation = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("EmergencyEvacuation");
+				}
+			}
+		}
+		private Int32? _Optical;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("optical", DisplayName = "Optical ", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? Optical
+		{
+			get
+			{
+				return this._Optical;
+			}
+			set
+			{
+				if ((this._Optical != value))
+				{
+					this.RaisePropertyChanging();
+					this._Optical = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("Optical");
+				}
+			}
+		}
+		private Int32? _ChronicConditions;
+		/// <summary>
+		/// 
+		/// </summary>
+		[UmbracoInfo("chronicConditions", DisplayName = "ChronicConditions ", Mandatory = false)]
+		[Property()]
+		[System.Runtime.Serialization.DataMemberAttribute()]
+		public virtual Int32? ChronicConditions
+		{
+			get
+			{
+				return this._ChronicConditions;
+			}
+			set
+			{
+				if ((this._ChronicConditions != value))
+				{
+					this.RaisePropertyChanging();
+					this._ChronicConditions = value;
+                    this.IsDirty = true;
+					this.RaisePropertyChanged("ChronicConditions");
+				}
+			}
+		}
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("ProductFee")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class ProductFee : WebPage  {
+		public ProductFee() {
+		}
+		
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("QA")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class QA : WebPage  {
+		public QA() {
+		}
+		
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("QAs")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class QAs : WebPage  {
+		public QAs() {
+		}
+		
+		
+		private AssociationTree<QA> _QAs;
+		public AssociationTree<QA> QAs
+		{
+			get
+			{
+				if ((this._QAs == null))
+				{
+					this._QAs = this.ChildrenOfType<QA>();
+				}
+				return this._QAs;
+			}
+			set
+			{
+				this._QAs = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Search")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Search : WebPage  {
+		public Search() {
+		}
+		
+		
+		private AssociationTree<Testimonial> _Testimonials;
+		public AssociationTree<Testimonial> Testimonials
+		{
+			get
+			{
+				if ((this._Testimonials == null))
+				{
+					this._Testimonials = this.ChildrenOfType<Testimonial>();
+				}
+				return this._Testimonials;
+			}
+			set
+			{
+				this._Testimonials = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Service")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Service : WebPage  {
+		public Service() {
+		}
+		
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Services")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Services : WebPage  {
+		public Services() {
+		}
+		
+		
+		private AssociationTree<Service> _Services;
+		public AssociationTree<Service> Services
+		{
+			get
+			{
+				if ((this._Services == null))
+				{
+					this._Services = this.ChildrenOfType<Service>();
+				}
+				return this._Services;
+			}
+			set
+			{
+				this._Services = value;
+			}
+		}
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("SiteMap")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class SiteMap : WebPage  {
+		public SiteMap() {
+		}
+		
+		
+		
+}
+	/// <summary>
+	/// 
+	/// </summary>
+	[UmbracoInfo("Testimonial")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[DocType()]
+	public partial class Testimonial : Search  {
+		public Testimonial() {
+		}
+		
+		
+		
+}
+}

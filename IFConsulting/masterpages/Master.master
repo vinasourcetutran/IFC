@@ -1,0 +1,183 @@
+﻿<%@ Master Language="C#" %>
+
+<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- InstanceBegin template="/Templates/Master.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- InstanceBeginEditable name="doctitle" -->
+    <!-- InstanceEndEditable -->
+    <title>IF Consulting</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/nivo-slider.css" rel="stylesheet" type="text/css" />
+    <link href="/css/jquery.ui.selectmenu.css" rel="stylesheet" type="text/css" />
+    <link href="/css/jquery.ui.theme.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Scripts/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/Scripts/ui.selectmenu.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.nivo.slider.pack.js"></script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('#slider').nivoSlider({ effect: 'slideInLeft', animSpeed: 100, pauseTime: 8000 });
+
+        });        
+    </script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            $('#subscribe-btn').click(function (e) {
+                e.preventDefault();
+                var result = checkValid();
+                if (result == '') {
+
+                    $('#subscribe-btn').hide();
+                    $('#imgLoader').show();
+
+                    $.post("/handlers/AddNewsLetter.ashx",
+                    {
+                        email: $('#newsletter-mail').val()
+
+                    },
+                    function (data) {
+                        $('#imgLoader').hide();
+                        $('#subscribe-btn').show();
+                        if (!data.Error) {
+                            //success!                                
+                            alert(data.Message);
+                        }
+                        else {
+                            alert(data.Message);
+                        }
+                    }, 'json');
+                }
+                else {
+                    alert(result);
+                    $('#newsletter-mail').focus();
+                }
+            });
+        });
+
+        function checkValid() {
+            var result = '';
+
+            if ($('#newsletter-mail').val() == '') {
+                result += 'Please enter your email address\n';
+            }
+            else if (!isValidEmail($('#newsletter-mail').val())) {
+                result += 'Please enter your valid email address\n';
+            }
+
+            return result;
+        }
+
+        function isValidEmail(email) {
+            //return /^[\w-\.]+@@([\w-]+\.)+[\w-]{2,4}$/.test(email);
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+    </script>
+ 
+    <script type="text/javascript">
+        //!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } } (document, "script", "twitter-wjs");
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#Nav a.active').removeClass('active');
+            var currentUrl = location.href.toLowerCase();
+            if (currentUrl.indexOf("/qas#") >= 0 || currentUrl.indexOf("/qas") >= 0) {
+                $('#Nav a.active').removeClass('active');
+                $('#nav01 a').addClass('active');
+            } else {
+                $('#Nav a').each(function () {
+                    //alert(this.href +":"+ location.href + ":" + location.href.indexOf(this.href));
+                    if (location.href.toLowerCase().indexOf(this.href.toLowerCase()) >= 0) {
+                        $('#Nav a.active').removeClass('active');
+                        $(this).addClass('active');
+                    }
+                })
+            }
+            if ($('#Nav a.active').length == 0)
+                $('#Nav a:first').addClass('active');
+        })
+    </script>
+</head>
+<body class="home front-page">
+    <div id="home-wrapper">
+        <div id="logo">
+            <div id="img-logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" class="logo" alt="LOGO" />
+                </a>
+            </div>
+            <div id="other-links">
+                <div id="call-us-now" style="height: 75px; margin-bottom: 0px; font-size:20px; color: grey">
+                    <%--<img src="/images/call-us-now.png" alt="Call Us" />--%>
+                    <umbraco:Macro ID="Macro1" Alias="GetListContactPhones" runat="server" />
+                </div>
+                <div id="mainmenu" style="margin-top: -70px; float: left;">
+                    <umbraco:Macro ID="Macro2" Alias="ToolbarIcon" runat="server" />
+                    
+                    <div id="newsletter" class="af-form" style="padding-top: 15px; padding-bottom: 0px;">
+                        <div id="af-body-831965269" class="af-body af-standards">
+                            <div class="af-element">
+                                <img style="float: left" src="/images/home-newsletter-label.png" alt="New letter" />
+                                <%--<input class="text" id="newsletter-mail" type="text" name="email" value="enter your email"
+                                        onblur="if (this.value==''){this.value='enter your email';}" onfocus="if (this.value=='enter your email') {this.value = '';}"
+                                        tabindex="500" />--%>
+                                <div class="af-textWrap">
+                                    <input class="text" id="newsletter-mail" style="background-image: none; border: solid 1px rgb(204, 204, 204);" type="text" name="email" value="enter your email"
+                                        onblur="if (this.value==''){this.value='enter your email';}" onfocus="if (this.value=='enter your email') {this.value = '';}"
+                                        tabindex="500" />
+                                </div>
+                                <div class="af-clear">
+                                </div>
+                            </div>
+                            <div class="af-element buttonContainer">
+                                <input name="submit" class="submit" type="submit" id="subscribe-btn" value="" tabindex="501" />
+                                <img id="imgLoader" src="/images/loader.gif" style="display: none"></img>
+                                <span class="loader" style="margin-top: 5px; display: none">
+                                <span class="loaderImg" id="spanContactLoader"></span>
+                                <span class="loaderText">Adding...</span></span>
+                                <div class="af-clear">
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    (function () {
+                        /*var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                        po.src = 'https://apis.google.com/js/plusone.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);*/
+                    })();
+                </script>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div id="header">
+            <umbraco:Macro Alias="TopNav" runat="server" />
+        </div>
+        <!-- end of logo -->
+        <asp:ContentPlaceHolder ID="Content" runat="server" />
+        <div class="clear">
+        </div>
+        <!-- InstanceEndEditable -->
+        <div class="clear">
+        </div>
+        <div class="clear">
+        </div>
+        <div class="line_footer">
+        </div>
+        <div id="home-row7">
+            © Copyright 2012 Insurance in Vietnam. All Rights Reserved.
+        </div>
+    </div>
+    <umbraco:Macro Alias="OlarkChat" runat="server" />
+</body>
+</html>

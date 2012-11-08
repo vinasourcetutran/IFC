@@ -1,0 +1,99 @@
+﻿@using umbraco.MacroEngines
+@inherits DynamicNodeContext
+@{    
+    var parent = new DynamicNode(1291);
+    int visibleCount = 0;   
+    <div class="home-people-sayings">
+         <div class="home-people-saying1">
+             @{
+                 for (int i = parent.ChildrenAsList.Count - 1; i >= 0; i--)
+                 {
+                     if (visibleCount > 0)
+                     {
+                         break;
+                     }
+                     var child = new DynamicNode(parent.ChildrenAsList[visibleCount].Id);
+                     if (child.Visible)
+                     {
+                         visibleCount++;
+                         <i>@child.GetPropertyValue("Comment")</i>
+                         <br />
+                         <label>-</label>
+                         <a href="@child.GetPropertyValue("ReferenceLink")" title="@child.GetPropertyValue("Author")">@child.GetPropertyValue("Author")</a>
+                         <label>, @child.GetPropertyValue("Country")</label>                         
+                     }
+                 }
+             }             
+         </div>        
+         <div class="home-people-saying2">
+             @{
+                 for (int i = parent.ChildrenAsList.Count - 1; i >= 1; i--)
+                 {
+                     if (visibleCount > 1)
+                     {
+                         break;
+                     }
+                     var child = new DynamicNode(parent.ChildrenAsList[visibleCount].Id);
+                     if (child.Visible)
+                     {
+                         visibleCount++;
+                         <i>@child.GetPropertyValue("Comment")</i>
+                         <br />
+                         <label>-</label>
+                         <a href="@child.GetPropertyValue("ReferenceLink")" title="@child.GetPropertyValue("Author")">@child.GetPropertyValue("Author")</a>
+                         <label>, @child.GetPropertyValue("Country")</label>
+                     }
+                 }
+             }             
+         </div>  
+          <div class="clear"/>                    
+    </div>
+    <div class="home-people-sayings">
+         <div class="home-people-saying1">
+             @{                        
+                 for (int i = parent.ChildrenAsList.Count - 1; i >= 2; i--)
+                 {
+                     if (visibleCount > 2)
+                     {
+                         break;
+                     }
+                     var child = new DynamicNode(parent.ChildrenAsList[visibleCount].Id);
+                     if (child.Visible)
+                     {
+                         visibleCount++;
+                         <i>@child.GetPropertyValue("Comment")</i>
+                         <br />
+                         <label>-</label>
+                         <a href="@child.GetPropertyValue("ReferenceLink")" title="@child.GetPropertyValue("Author")">@child.GetPropertyValue("Author")</a>
+                         <label>, @child.GetPropertyValue("Country")</label>
+                     }
+                 }
+             }             
+         </div>
+         <div class="home-people-saying2">
+             @{
+                 for (int i = parent.ChildrenAsList.Count - 1; i >= 3; i--)
+                 {
+                     if (visibleCount > 3)
+                     {
+                         break;
+                     }
+                     var child = new DynamicNode(parent.ChildrenAsList[visibleCount].Id);
+                     if (child.Visible)
+                     {
+                         visibleCount++;
+                         <i>@child.GetPropertyValue("Comment")</i>
+                         <br />
+                         <label>-</label>
+                         <a href="@child.GetPropertyValue("ReferenceLink")" title="@child.GetPropertyValue("Author")">@child.GetPropertyValue("Author")</a>
+                         <label>, @child.GetPropertyValue("Country")</label>
+                     }
+                 }
+             }             
+         </div>
+         <div class="clear"></div>         
+  </div>
+  <div class="clear"></div> 
+}
+                                                        
+                

@@ -1,0 +1,41 @@
+﻿@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+
+@inherits DynamicNodeContext
+@{    
+    var parent = new DynamicNode(1221);
+    int visibleCount = 0;
+    for (int i = parent.ChildrenAsList.Count - 1; i >= 0; i--)
+    {
+        if (visibleCount > 3) 
+        {
+            break;
+        }
+        var child = new DynamicNode(parent.ChildrenAsList[i].Id);
+        if (child.Visible)
+        {
+            visibleCount++;
+            switch (visibleCount)
+            {
+                case 1: 
+                    <div class="home-col home_complimentary">
+                        <h2 class="home-h2-alt">@child.GetProperty("Title")</h2>
+                        @child.GetProperty("Description")
+                    </div>
+                    break;
+                case 2: 
+                    <div class="home-col home_smart_insurance">
+                        <h2 class="home-h2">@child.GetProperty("Title")</h2>
+                        @child.GetProperty("Description")
+                    </div>
+                   break;
+                case 3: 
+                    <div class="home-col home_service">
+                        <h2 class="home-h2">@child.GetProperty("Title")</h2>
+                        @child.GetProperty("Description")
+                    </div>
+                   break;
+            }
+        }
+    }   
+}

@@ -1,0 +1,50 @@
+﻿@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@inherits DynamicNodeContext
+
+<h2>Contact Us</h2>
+
+
+@{
+    Node ContactsNode = new Node(1276);
+    
+    <div class="contact">
+        
+        @for (int i = 0; i < ContactsNode.Children.Count; i++)
+        {
+            Node item = ContactsNode.Children[i];
+            if (i % 2 == 0)
+            {
+                <div class="lcontact" style="width:483px; overflow:hidden">
+                    <img alt="@item.Properties["Title"]" src="@item.Properties["Image"]" />
+                    <b> @item.Properties["City"]</b> <br />                    
+                    @item.Properties["Address"] <br />                    
+                    @item.Properties["City"] , @item.Properties["Country"] <br />
+                    Tel: @item.Properties["Tel"] <br />
+                    Fax: @item.Properties["Fax"] <br />
+                    Email: <a  href="mailto:@item.Properties["Email"]" title="@item.Properties["EmailTitle"]">
+                    @item.Properties["Email"]</a> <br />
+                </div>
+            }
+            else
+            {
+                <div class="rcontact"  style="width:483px; overflow:hidden">
+                    <img alt="@item.Properties["Title"]" src="@item.Properties["Image"]" />
+                    <b> @item.Properties["City"]</b> <br />                                        
+                    @item.Properties["Address"] <br />
+                    @item.Properties["City"] , @item.Properties["Country"] <br />
+                    Tel: @item.Properties["Tel"] <br />
+                    Fax: @item.Properties["Fax"] <br />
+                    Email: <a  href="mailto:@item.Properties["Email"]" title="@item.Properties["EmailTitle"]">
+                    @item.Properties["Email"]</a> <br />
+                </div>
+            }                
+        }
+                
+   	</div>
+          
+        
+}        
+    
+            
+  

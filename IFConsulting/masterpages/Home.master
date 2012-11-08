@@ -1,0 +1,92 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="Content" runat="server">
+    <umbraco:Macro Alias="SlideShow" runat="server"></umbraco:Macro>
+    <div class="clear20">
+    </div>
+    <div class="box_getstart">
+       <%-- <div class="arrow">
+            <img alt="" src="/images/arrow1.png" /></div>--%>
+        <div class="clear">
+        </div>
+        <div class="box_getstart_image">
+            <img alt="" style="max-width: 192px; max-height: 245px;" src="<umbraco:Item ID="Item3" field="getStartImage" runat="server" />" />
+        </div>
+        <div class="clear">
+        </div>
+        <div class="box_getstart_text">
+            <div class="box_border_top">
+            </div>
+            <div class="clear">
+            </div>
+            <div class="box_border_left">
+                <div class="box_border_center">                
+                    <div class="box_border_right">
+                        <div class="box_logo_background">
+                            <umbraco:Item ID="Item2" Field="getStartContent" runat="server" />
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div class="clear">
+            </div>
+            <div class="box_border_bottom">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    <div id="home-row1">
+        <umbraco:Macro Alias="HomeBodyContent" runat="server" />
+        <div class="clear">
+        </div>
+    </div>
+    <div id="home-row2" style="height: 120px;">
+        <umbraco:Macro ID="Macro1" Alias="ClientSlider" runat="server" />
+        &nbsp;
+    </div>
+    <div id="home-row3">
+        <div class="home-col home-col1">
+            <h2 class="home-h2">
+                <umbraco:Item Field="blogTitleHeader" runat="server" />
+            </h2>
+            <umbraco:Macro Alias="HomeBlog" runat="server" />
+        </div>
+        <div class="home-col home-col3">
+            <h2 class="home-h2">
+                <umbraco:Item Field="testimonyHeader" runat="server" />
+            </h2>
+            <div id="home-suppliers">
+                <umbraco:Macro Alias="HomeSupplier" runat="server"></umbraco:Macro>
+                <div class="clear">
+                </div>
+            </div>
+            <umbraco:Macro Alias="HomePeopleSaying" runat="server" />
+            <div class="space16">
+                &nbsp;</div>
+            <%--<a class="with-right-arrow" href="#" title="More">More</a>--%>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    <!-- #home-row3 -->
+    <div id="home-row-expatmedicalinsurance">
+        <h1 class="home-h1">
+            <umbraco:Item ID="PlanHeader" Field="planHeader" runat="server" />
+        </h1>
+        <div id="expat-medical-col1">
+            <umbraco:Item ID="rightPlanContent" Field="leftPlanContent" runat="server" />
+        </div>
+        <div id="expat-medical-col2">
+            <umbraco:Item ID="Item1" Field="rightPlanContent" runat="server" />
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</asp:Content>

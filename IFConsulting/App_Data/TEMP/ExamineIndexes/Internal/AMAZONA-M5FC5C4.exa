@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-16"?>
+<dictionary>
+  <item>
+    <key>
+      <EXAFields>Name</EXAFields>
+    </key>
+    <value><![CDATA[AMAZONA-M5FC5C4]]></value>
+  </item>
+  <item>
+    <key>
+      <EXAFields>Created</EXAFields>
+    </key>
+    <value><![CDATA[2012-10-11 12:07:10.131]]></value>
+  </item>
+  <item>
+    <key>
+      <EXAFields>Updated</EXAFields>
+    </key>
+    <value><![CDATA[2012-10-18 08:20:11.164]]></value>
+  </item>
+  <item>
+    <key>
+      <EXAFields>IsMaster</EXAFields>
+    </key>
+    <value><![CDATA[True]]></value>
+  </item>
+</dictionary>

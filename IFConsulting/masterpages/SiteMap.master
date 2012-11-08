@@ -1,0 +1,37 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="Content" runat="server">
+    <div id="customer-promise-col-left">
+        <div class="sitemap">
+            <h1 class="sitemap_title">
+                IF Consulting Sitemap</h1>
+            <div class="clear20">
+            </div>
+            <umbraco:Macro Alias="SiteMap" runat="server" />
+            <div class="clear20">
+            </div>
+        </div>
+    </div>
+    <div id="customer-promise-col-right" class="col-right">
+         <div id="want-to-talk">
+            <div id="contact-links">
+                <a id="lnk-want2talk" href="/contact.aspx"></a>
+                <div id="want-to-talk-links">
+                    <a href="/contact.aspx">
+                        <img alt="contact us" src="../images/bnt_contact.jpg"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="clear20">
+        </div>
+        <umbraco:Macro Alias="GetQAList" runat="server"></umbraco:Macro>
+        <div class="clear15">
+        </div>
+        <div>
+            <img alt="Happy Customer" src="images/happy_customer.jpg" />
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</asp:Content>

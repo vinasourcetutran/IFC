@@ -1,0 +1,65 @@
+@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+
+@{
+    dynamic ClientsNode = Model.Clients[0];
+    var children = ClientsNode.Children;
+}
+<link href="/css/carousel/tango/skin.css" rel="stylesheet" type="text/css" />
+<script src="/scripts/jquery.jcarousel.min.js" type="text/javascript"></script>
+<style type="text/css">
+    .jcarousel-skin-tango .jcarousel-container-horizontal {
+        width: 965px;
+    }
+
+    .jcarousel-skin-tango .jcarousel-container-horizontal {
+        width: 955px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .jcarousel-skin-tango .jcarousel-clip-horizontal{ width: 100%;}
+    
+    .jcarousel-skin-tango .jcarousel-clip-horizontal img{ max-width:150px;}
+    .jcarousel-skin-tango .jcarousel-item { text-align: center; }
+</style>
+
+<script type="text/javascript">
+    function mycarousel_initCallback(carousel) {
+        // Disable autoscrolling if the user clicks the prev or next button.
+        carousel.buttonNext.bind('click', function () {
+            carousel.startAuto(0);
+        });
+
+        carousel.buttonPrev.bind('click', function () {
+            carousel.startAuto(0);
+        });
+
+        // Pause autoscrolling if the user moves with the cursor over the clip.
+        carousel.clip.hover(function () {
+            carousel.stopAuto();
+        }, function () {
+            carousel.startAuto();
+        });
+    };
+
+    $(function() {
+        $('#mycarousel').jcarousel({
+            visible: 6,
+            auto: 5,
+            scroll: 6,
+            wrap: 'circular',
+            initCallback: mycarousel_initCallback,
+            buttonNextHTML: null,
+            buttonPrevHTML: null
+        });
+    });
+</script>
+
+<ul id="mycarousel" class="jcarousel-skin-tango">
+@foreach(var client in children)
+{
+    <li>
+        <img src="@client.image" alt="@client.title" />
+    </li>
+}
+</ul>

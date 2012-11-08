@@ -1,0 +1,386 @@
+﻿@using Newtonsoft.Json
+@using Utility
+@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@using System.Xml.Linq
+@using IFC.Common;
+@inherits DynamicNodeContext
+@{
+    if (HttpContext.Current.Request.QueryString["data"] == null || HttpContext.Current.Request.QueryString["data"].Trim() == "")
+    {
+        HttpContext.Current.Response.Redirect("~/Home");
+    }
+    dynamic areas = new DynamicNode(1350);
+    dynamic qas = Model.QAs.First();
+
+    Criteria Criteria = null;
+    if (HttpContext.Current.Request["data"] != null && !string.IsNullOrWhiteSpace(HttpContext.Current.Request["data"]))
+    {
+        Criteria = JsonConvert.DeserializeObject<Criteria>(HttpContext.Current.Request.QueryString["data"]);
+    }
+    else
+    {
+        HttpContext.Current.Response.Redirect("~/Search");
+    }
+
+    decimal MinFee;
+    string strListPremiums = UtilityIFC.GetJsonPremiums(Model, Criteria, out MinFee);
+}
+
+<script type="text/javascript">
+    var minFee = Math.floor( @MinFee );
+</script>
+<div class="search_result">
+    <div id="left-filters" class="column">
+        <div id="search-results">
+            <span id="matched-result" data-bind="text: premiumToShow().length">32</span> of
+            <span data-bind="text: premiums().length <= 1 ? premiums().length + ' policy' : premiums().length + ' policies'">
+            </span>match your criteria.
+        </div>
+        <div class="left-filter">
+            <div class="left-filter-title">
+                Yearly Premium</div>
+            <div class="slider-ranges">
+                <div class="slider-ranges-left">
+                    <font><span class="range-left">$29</span></font>
+                </div>
+                <div class="slider-ranges-right">
+                    <font><span class="range-right">$517</span></font>
+                </div>
+                <div class="clear">
+                </div>
+                <input type="hidden" id="priceMaxValue" data-bind="value: priceMaxValueToShow" />
+                <input type="hidden" id="priceMinValue" data-bind="value: priceMinValueToShow" />
+            </div>
+            <div id="slider-1">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="left-filter">
+            <div class="left-filter-title">
+                Level</div>
+            <div class="level_box">
+                <input type="radio" name="level" id="All" value="All" data-bind="checked: levelToShow" />
+                <label for="All">
+                    All</label><br />
+                <input type="radio" name="level" id="In" value="In" data-bind="checked: levelToShow" />
+                <label for="In">
+                    Inpatient Only</label><br />
+                <input type="radio" name="level" id="In-Out" value="In-Out" data-bind="checked: levelToShow" />
+                <label for="In-Out">
+                    In &amp; Out</label><br />
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="left-filter">
+            <div class="left-filter-title">
+                Area</div>
+            <div class="level_box">
+                @foreach (var area in areas.Children)
+                {                
+                <input data-bind="checked: areaToShow" type="checkbox" name="Area" id="@area.name"
+                    value="@area.name" />
+                <label for='@area.name'>@area.displayName</label><br />
+                }
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="left-filter">
+            <div class="left-filter-title">
+                Excess</div>
+            <div class="level_box">
+                <div class="nil">
+                    <input type="radio" name="Excess" id="e_NIL" value="NIL" data-bind="checked: excessToShow" />
+                    <label for="e_NIL">
+                        NIL</label></div>
+                <div class="all">
+                    <input type="radio" name="Excess" id="e_All" value="All" data-bind="checked: excessToShow" />
+                    <label for="e_All">
+                        All</label></div>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div id="want-to-talk">
+            <div id="contact-links">
+                <a id="lnk-want2talk" href="#"></a>
+                <div id="want-to-talk-links">
+                    <a href="#">
+                        <img alt="" src="/images/bnt_contact.jpg" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="clear20">
+        </div>
+        <div class="r_news">
+            <ul>
+                @for (int i = 0; i < qas.Children.Count() && i < 10; i++)
+                {
+                    dynamic qa = qas.Children[i];
+                <li><a href="/qas?id=QA_@(qa.Id)">
+                    @qa.title
+                </a></li>
+                }
+            </ul>
+        </div>
+        <div class="clear15">
+        </div>
+        <div>
+            <img alt="Happy Customer" src="/images/happy_customer.jpg" />
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <!-- #left-filters -->
+    <div id="products-list-col" class="column">
+        <div id="sort-by-bar">
+            <a id="premium" class="sort-by fleft" data-bind="css: {current: sortBy()=='premium'}, click: function(data, event){changeSortType('premium')}"
+                href="#"></a><a id="company" class="sort-by fleft" href="#" data-bind="css: {current: sortBy()=='company'}, click: function(data, event){changeSortType('company')}">
+                </a>
+            <select id="show-by-currency" class="fright usd" data-bind="value: currencyToShow">
+                <option value="USD" selected="selected">$ USD</option>
+                <option value="VND">₫ VND</option>
+                <option value="EUR">€ EUR</option>
+            </select>
+            <div class="clear">
+            </div>
+        </div>
+        <div id="products-list-empty-result" style="display: none;" data-bind="fadeVisible: premiumToShow().length==0">
+            <h3>
+                Sorry, we didn't find any insurance policies that match your requirements!</h3>
+            Please change your filter selections on the left or start a new search to try again.
+        </div>
+        <!-- products-list-empty-result -->
+        <div id="products-list" data-bind="fadeVisible: premiumToShow().length>0, template: { foreach: premiumToShow,
+                        beforeRemove: hidePremiumElement,
+                        afterAdd: showPremiumElement }">
+            <div class="product-list-item sortable ">
+                <div class="product-panel">
+                    <div class="application-mark online" data-bind='attr: {href: documentUrl}' style="cursor: pointer">
+                    </div>
+                    <div class="product-list-item-title premium-5000">
+                        <a title="Click to view more details about this policy" data-bind='attr: {href: detailsUrl}, text: name'>
+                        </a>
+                    </div>
+                    <div class="product-list-item-content">
+                        <div class="product-content-col1 fleft">
+                            <img alt="" data-bind="attr: {src:logo, title:name}" border="0" title="Seven Corners" />
+                            <span class="product-desc" data-bind='text: description'></span>
+                        </div>
+                        <div class="product-content-col2 fleft">
+                            <div class="product-option max-benefit">
+                                <div class="real-value" data-bind="text: priceInCurrency">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content-col3 fleft">
+                            <div class="product-option in-patient">
+                                <div class="symbol included" title="Covered">
+                                </div>
+                            </div>
+                            <div class="product-option out-patient">
+                                <div class="symbol included" data-bind="css: {'included': level=='In-Out' || level=='Out', 'excluded': level=='In'}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content-col4 fleft">
+                            <div class="product-option maternity">
+                                <div class="symbol included" data-bind="css: {'included': options.indexOf('Maternity')>=0, 'excluded': options.indexOf('Maternity')<0}"
+                                    title="Covered">
+                                </div>
+                            </div>
+                            <div class="product-option dental">
+                                <div class="symbol" data-bind="css: {'included': options.indexOf('Dental')>=0, 'excluded': options.indexOf('Dental')<0}"
+                                    title="Dental">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content-col5 fleft">
+                            <div class="product-option well-being">
+                                <div class="symbol included" data-bind="css: {'included': options.indexOf('Well-being')>=0, 'excluded': options.indexOf('Well-being')<0}"
+                                    title="Covered">
+                                </div>
+                            </div>
+                            <div class="product-option emergency evacuation">
+                                <div class="symbol included" data-bind="css: {'included': options.indexOf('Evacuation')>=0, 'excluded': options.indexOf('Evacuation')<0}"
+                                    title="Covered">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content-col6 fleft">
+                            <div class="premium-button premium-5000">
+                                <a class="button-apply-now" data-bind="attr: {href: detailsUrl, id: id}" target="_blank" title="Click to apply for this policy now">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <!-- #products-list -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    function premiumSearchModel() {
+        this.exchangeRateFromUSD = { 'VND': 22130.00, 'EUR': 0.8 };
+        this.levelToShow = ko.observable("All");
+        this.areaToShow = ko.observableArray([]);//["Vietnam"]);
+        this.excessToShow = ko.observable("All");
+        this.sortBy = ko.observable('premium');
+        this.currencyToShow = ko.observable('USD');
+        this.priceMinValueToShow = ko.observable(minFee);
+        this.priceMaxValueToShow = ko.observable(10000);
+        this.patients = @Html.Raw(JsonConvert.SerializeObject(Criteria.ListPatients)) ;
+
+        seft = this;
+
+        this.premiums = ko.observableArray(@Html.Raw(strListPremiums));
+
+        var arr = this.premiums();
+        for(var i=0; i < arr.length; i++) {
+            arr[i].priceInCurrency = ko.observable('');
+        }
+
+
+        this.changeSortType = function(sortBy) {
+            seft.sortBy(sortBy);
+            return false;
+        };
+
+        this.premiumToShow = ko.computed(function () {
+            var desiredLevel = this.levelToShow();
+            var desiredExcess = this.excessToShow();
+            var minPrice = seft.priceMinValueToShow();
+            var maxPrice = seft.priceMaxValueToShow();
+            var result = [];
+
+            result = ko.utils.arrayFilter(this.premiums(), function (premium) {
+                return (premium.level == desiredLevel || desiredLevel == "All")
+                        //&& (premium.totalPrice >= minPrice && premium.totalPrice <= maxPrice)
+                        && (premium.excess == desiredExcess || desiredExcess == "All")
+                        && (ko.utils.arrayFilter(seft.areaToShow(), function (area) {
+                                return premium.area == area;
+                            }).length > 0 || seft.areaToShow().length == 0)
+                        && (isAgeRangeValid(premium.ageRangePrices, seft.patients, minPrice, maxPrice));
+            });
+
+            var currentCurrency = seft.currencyToShow();
+            for (var i = 0; i < result.length; i++) {
+                if (seft.currencyToShow() == 'USD')
+                    result[i].priceInCurrency('$' + seft.convertCorrency(result[i].maxBenefit, result[i].currency, currentCurrency));
+                else if (seft.currencyToShow() == 'VND')
+                    result[i].priceInCurrency(seft.convertCorrency(result[i].maxBenefit, result[i].currency, currentCurrency) + '₫');
+                else
+                    result[i].priceInCurrency('€' + seft.convertCorrency(result[i].maxBenefit, result[i].currency, currentCurrency));
+
+            }
+
+            return result.sort(function(pre1, pre2) {
+                if (seft.sortBy() == 'premium') {
+                    return pre1.totalPrice == pre2.totalPrice ? 0 : pre1.totalPrice > pre2.totalPrice ? 1 : -1;
+                }
+                else {
+                    return pre1.insurerName == pre2.insurerName ? 0 : pre1.insurerName > pre2.insurerName ? 1 : -1;
+                }
+            });
+        }, this);
+
+        // Animation callbacks for the planets list
+        this.showPremiumElement = function(elem) {
+            if (elem.nodeType === 1) 
+                $(elem).hide().slideDown();
+        };
+        this.hidePremiumElement = function(elem) {
+            if (elem.nodeType === 1)
+                $(elem).slideUp(function() {
+                     $(elem).remove();
+                });
+        };
+        
+    }
+
+    ko.bindingHandlers.fadeVisible = {
+        init: function (element, valueAccessor) {
+            // Initially set the element to be instantly visible/hidden depending on the value
+            var value = valueAccessor();
+            $(element).toggle(ko.utils.unwrapObservable(value)); // Use "unwrapObservable" so we can handle values that may or may not be observable
+        },
+        update: function (element, valueAccessor) {
+            // Whenever the value subsequently changes, slowly fade the element in or out
+            var value = valueAccessor();
+            ko.utils.unwrapObservable(value) ? $(element).fadeIn() : $(element).fadeOut();
+        }
+    };
+
+    premiumSearchModel.prototype.convertCorrency = function(amount, currency, exchangeCurrency) {
+        if (currency == exchangeCurrency)
+            return amount;
+        else {
+            var convertAmount;
+            if (currency == 'USD') {
+                convertAmount = amount * seft.exchangeRateFromUSD[exchangeCurrency];
+                if (exchangeCurrency == 'VND')
+                    return convertAmount >= 1000000 ? roundNumber(convertAmount / 1000000, 2) + ' triệu': convertAmount/1000*1000;
+                return convertAmount;
+            }
+            else {
+                convertAmount = amount / seft.exchangeRateFromUSD[currency] * seft.exchangeRateFromUSD[exchangeCurrency];
+                if (exchangeCurrency != 'VND') 
+                    return convertAmount;
+                else 
+                    return convertAmount >= 1000000 ? roundNumber(convertAmount / 1000000, 2) + ' triệu': convertAmount/1000*1000;
+            }
+        }
+    };
+
+    var pm = new premiumSearchModel();
+    ko.applyBindings(pm);
+
+    function getOptions(strOption){
+        var options = [];
+    }
+    
+    function roundNumber(num, dec) {
+	    var result = Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
+	    return result;
+    }
+    
+    function isAgeRangeValid(AgeRange, ListPatients, minPrice, maxPrice)
+    {
+        for (var i = 0; i < ListPatients.length; i++)
+        {
+            var patient = ListPatients[i];
+            for (var j = 0; j < AgeRange.length; j++) {
+                var range = AgeRange[j];
+                if (range.ageMin <= patient.Age && patient.Age <= range.ageMax &&
+                    minPrice <= range.price && range.price <= maxPrice)
+                    return true;
+            }
+        }
+        return false;
+    }
+        
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('.application-mark').click(function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            if (url != undefined && url != null && url != "") {
+                window.open($(this).attr('href'), '_blank');
+                window.focus();
+            }
+        });
+    });
+</script>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+  <info>
+    <package>
+      <name>Desktop Media Uploader</name>
+      <version>2.0.5</version>
+      <license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
+      <url>http://our.umbraco.org/projects/website-utilities/desktop-media-uploader</url>
+      <requirements>
+        <major>4</major>
+        <minor>2</minor>
+        <patch>0</patch>
+      </requirements>
+    </package>
+    <author>
+      <name>Matt Brailsford</name>
+      <website>blog.mattbrailsford.com</website>
+    </author>
+    <readme><![CDATA[SUMMARY
+==============================================
+Desktop Media Uploader provides a small, cross-platform application that can be installed on your computer and allows you to easily upload media items directly to your sites media section.
+Once you sign in to the Desktop Media Uploader with an Umbraco user account with sufficient privileges, you'll be able to choose a folder to upload files to, and simply drag-and-drop files and folders directly into the main window to create an upload queue. Once all your files are queued, simply click the Upload button to upload the files straight to your website.
+Desktop Media Uploader honors user privileges, ensuring users can only upload files to folders they have access to. In addition, Desktop Media Uploader will disallow any file that is greater than the maximum file size allowed on the server, preventing unnecessary upload attempts.
+Once you have Desktop Media Uploader installed, you can upload files to any Umbraco site that has the Desktop Media Uploader package installed. You only need to download the desktop app once. The desktop app will automatically configure itself to whichever site you are connected to.
+HOW TO USE
+==============================================
+Simply install (paying attention to important notice below), then navigate to the media section to install the app from the media dashboard.
+Once installed, sign in entering the root url for you site, plus you username and password (optionaly set whether to save your login details).
+Once signed in, select a media folder to upload to by double clicking an item in the folder picker, then drag the files and fodlers to upload into the app. Once all your files are queued up, click upload to upload your files.
+To sign out, click the "Sign out" button in the top right.
+IMPORTANT!
+==============================================
+If you are using anything other than IIS7, you will need to manually setup a mime type for the ".air" extension, which maps to "application/vnd.adobe.air-application-installer-package+zip" in order to be able to download the Desktop Media Uploader app.
+UNINSTALL
+==============================================
+Due to an issue with package actions in 4.5, Desktop Media Uploader does not currently clean up everything it should when it uninstalls. To clean up manualy, ensure you remove the Desktop Media Upload section from dashboard.config, delete the desktopMediaUploader.config file from the /config folder and remove the .air mime type definition from web.config / IIS.
+Because the Desktop Media Uploader app is installed onto your machine, to remove this, you'll need to run your computers built in uninstall process.
+UPGRADES
+==============================================
+To upgrade, please uninstall and reinstall a fresh (please see notes on Uninstall above).
+CHANGELOG
+==============================================
+1.0.1
+* Enter key on password field now triggers login
+* Added extra security checks when uploading files
+* Changed logo
+* Added video to dashboard
+* Now built against .NET 3.5
+* Works with Umbraco 4.0.x upwards
+2.0.0
+* Updated user interface
+* Added folder support
+* Added launch from browser support with auto sign in
+2.0.1
+* Fixed Sign in issue with active directory
+* Fixed issue with media not triggering AfterSave event
+* Added extra error checking when creating tree picker data
+2.0.2
+* Implemented MediaFactory Chain of Responsibilty pattern (WI-2)
+* Fixed spelling mistake in desktopMediaUploader.config
+* Updated to save media files as authenticated user
+* Moved resources to /umbraco/plugins folder
+* Added IIS7 & AppSettings maxUpload configuration settings
+2.0.3
+* Fixed issue with Media save events firing too early]]></readme>
+  </info>
+  
+  <DocumentTypes />
+  <Templates />
+  <Stylesheets />
+  <Macros />
+  <DictionaryItems />
+  <Languages />
+  <DataTypes />
+  
+  <Actions>
+    <Action runat="install" alias="DMU_AddDashboardSection" dashboardAlias="DesktopMediaUploader">
+      <section>
+        <areas>
+          <area>media</area>
+        </areas>
+        <tab caption="Desktop Media Uploader">
+          <control>/umbraco/plugins/theoutfield/desktopmediauploader/dashboard.ascx</control>
+        </tab>
+      </section>
+    </Action>
+    <Action runat="install" alias="DMU_AddMimeType" extension=".air" mimetype="application/vnd.adobe.air-application-installer-package+zip" />
+  </Actions>
+  
+  <control />
+  
+  <files><file><guid>64f82402-44f6-434b-ad2a-e4dc985fcb48.dll</guid><orgPath>/bin</orgPath><orgName>TheOutfield.UmbExt.DesktopMediaUploader.dll</orgName></file><file><guid>675f00a3-8421-4f9f-8ece-cccc9bcf66d7.config</guid><orgPath>/config</orgPath><orgName>desktopMediaUploader.config</orgName></file><file><guid>1d13fb4d-b153-46f4-b795-5e9c7a749242.swf</guid><orgPath>/umbraco/plugins/TheOutfield/DesktopMediaUploader</orgPath><orgName>AIRInstallBadge.swf</orgName></file><file><guid>090b91a9-922e-4409-ad91-43c1e2f160c4.jpg</guid><orgPath>/umbraco/plugins/TheOutfield/DesktopMediaUploader</orgPath><orgName>badge.jpg</orgName></file><file><guid>90c60de4-5a78-429c-9436-040c5a9fb60b.ascx</guid><orgPath>/umbraco/plugins/TheOutfield/DesktopMediaUploader</orgPath><orgName>Dashboard.ascx</orgName></file><file><guid>f1a20436-64ac-4dde-b892-485e927c1fe3.air</guid><orgPath>/umbraco/plugins/TheOutfield/DesktopMediaUploader</orgPath><orgName>DesktopMediaUploader.air</orgName></file><file><guid>7b3847ca-34f6-4f5b-9a71-4deba705b5ad.ashx</guid><orgPath>/umbraco/plugins/TheOutfield/DesktopMediaUploader</orgPath><orgName>dmu.ashx</orgName></file><file><guid>e6b2950e-820c-49ba-bcf7-c7fd14926423.swf</guid><orgPath>/umbraco/plugins/TheOutfield/DesktopMediaUploader</orgPath><orgName>expressinstall.swf</orgName></file></files>
+  
+</umbPackage>

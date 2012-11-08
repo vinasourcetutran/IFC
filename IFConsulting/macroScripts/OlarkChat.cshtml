@@ -1,0 +1,65 @@
+﻿@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@inherits DynamicNodeContext
+@{
+    Node chatSetting = new Node(1315);
+	
+    <script type="text/javascript" src="http://static.olark.com/js/wc.js"></script>
+    <script type="text/javascript">
+        tConfig = wc_config();
+        tConfig.vars["not_available_text"] = "@chatSetting.Properties["notAvailableText"]";
+        tConfig.vars["offline_message"] = "@chatSetting.Properties["offlineMessage"]";
+        tConfig.vars["busy_text"] = "@chatSetting.Properties["busyText"]";
+        tConfig.vars["busy_message"] = "@chatSetting.Properties["busyMessage"]";
+        tConfig.vars["before_chat_text"] = "@chatSetting.Properties["beforeChatText"]";
+        tConfig.vars["in_chat_text"] = "@chatSetting.Properties["inChatText"]";
+        tConfig.vars["welcome_msg"] = "@chatSetting.Properties["welcomeMsg"]";
+        tConfig.vars["disableGoogleAnalytics"] = 0;        
+        wc_init("@chatSetting.Properties["profileId"]", tConfig); 
+    </script>
+    @Html.Raw(chatSetting.Properties["EmbebScript"].Value);
+                                                          
+}
+<a href="" id="showChat">
+    <img alt="Live Chat" src="/images/live_chat.png" class="live_chat" /></a>
+<script type="text/javascript">
+    var chatIsShow = false;
+    olark('api.box.onShow', function() {
+        $('a#showChat').fadeOut();
+        chatIsShow = true;
+    });
+    olark('api.box.onHide', function() {
+        $('a#showChat').fadeIn();
+        chatIsShow = false;
+    });
+
+    olark('api.box.onExpand', function() {
+        $('a#showChat').fadeOut();
+        olark('api.box.show');
+    });
+    olark('api.box.onShrink', function() {
+        $('a#showChat').fadeOut();
+        olark('api.box.hide');
+    });
+
+    $('a#showChat').click(function(e) {
+        e.preventDefault();
+        if (chatIsShow) {
+            olark('api.box.hide');
+        }
+        else {
+            olark('api.box.expand');
+        }
+    });
+
+    var testChat = setInterval(function() {
+        if ($('#habla_panel_div:visible').length > 0) {
+            if ($('#habla_panel_div:visible').height() < 300) {
+                olark('api.box.hide');
+                $('#header a#showChat').show();
+            }
+            clearInterval(testChat);
+        }
+    }, 1000);
+    
+</script>

@@ -1,0 +1,6 @@
+@using umbraco.MacroEngines
+@inherits DynamicNodeContext
+
+@{
+    var clients = Model.Clients.Descendants("Client");
+}

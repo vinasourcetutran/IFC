@@ -1,0 +1,114 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+
+<%--<asp:Content ContentPlaceHolderID="MasterContentPlaceHolder" runat="server">--%>
+<%--<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>--%>
+
+<asp:content ContentPlaceHolderId="Content" runat="server">
+	<script type="text/javascript">
+	$(document).ready(function () {
+		$('a.product-tab').click(function () {
+			$('a.product-tab').removeClass('current');
+			$(this).addClass('current');
+
+			$('div.product-detail').addClass('hidden');
+			$('#' + $(this).attr('href').substring(1)).removeClass('hidden');
+
+			return false;
+		});
+	});
+</script>
+
+   <!-- left coloumn -->
+		<%--<div id="customer-promise-col-left">
+            <div class="fleft product-main">
+            
+            <div id="product-info-detail">
+                <div class="fleft company-logo">
+                    <img alt="" src="<umbraco:Item field="logoImage" runat="server" />" border="0" /><br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <span class="underwriter">underwriter</span><br />
+                    <img alt="" src="<umbraco:Item field="imageUnder" runat="server" />" border="0" /><br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <span class="underwriter">A. M. BEST RATING</span><br />
+                    <span class="rating">N/A</span>
+                </div>
+                <!-- .fleft.company-logo -->
+                <div class="fleft company-info">
+                	<h1 class="company-h1-title"><umbraco:Item field="title" runat="server" /><br /><span>IMG</span></h1>
+                    <div class="company-description">
+                        <umbraco:Item field="introduce" runat="server" />                        <div class="news_more2"><br /><a href="#" title="Read more">Read more</a></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div id="company-get-quotes-img">
+                    	<div class="price"><span>$<umbraco:Item field="price" runat="server" /></span> per/month</div>
+                        <div class="bntApply"><a href="#" class="ir apply-img">Apply</a></div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="clear">
+                    </div>
+                </div>
+                <!-- .fleft.company-info -->
+                <div class="clear">
+                </div>
+            </div>
+            <!-- #product-detail -->
+           
+            <div id="product-detail">
+                <div id="product-detail-overview" class="product-detail">
+                    <div id="print" class="print fright">
+                        <a href="" onclick="javascript:window.print(); return false;" title="Prink" class="link-print" id="link-print"></a>
+                    </div>
+                    <div class="breadcrumb">
+                        <a href="#">Home</a> » <a href="#">International Health Insurance</a> » <a href="#">Search Results</a> »<span> <umbraco:Item field="title" runat="server" /></span>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="overview-title">At a glance</div>
+                    
+                 	<div class="clear"></div>
+                </div>
+              
+              
+            </div>
+            <!-- #product-detail -->
+        </div>
+        </div> --%>
+        <umbraco:Macro ID="Macro2" Alias="GetProductOverview" runat="server" />
+        <!-- end left coloumn -->
+        <!-- end right coloumn -->
+
+        <div id="customer-promise-col-right" class="col-right">
+             <div id="want-to-talk">
+            <div id="contact-links">
+                <a id="lnk-want2talk" href="/contact.aspx"></a>
+                <div id="want-to-talk-links">
+                    <a href="/contact.aspx">
+                        <img alt="contact us" src="/images/bnt_contact.jpg"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+            <div class="clear20">
+            </div>
+            <umbraco:Macro ID="Macro1" Alias="GetQAList" runat="server"></umbraco:Macro>
+            <div class="clear15">
+            </div>
+            <div>
+                <img alt="Happy Customer" src="/images/happy_customer.jpg" />
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+
+
+
+
+<%--</asp:content>--%>
+</asp:Content>

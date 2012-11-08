@@ -1,0 +1,196 @@
+/*~~~~~~~~~~~~~~~~~global styles start~~~~~~~~~~~~~~~~~*/
+html {
+	width: 100%;
+	height: 100%;
+	_border: none;
+}
+body, form {
+	margin: 0px;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	background: #5C3C2F;
+}
+img, object, embed {
+	display: block;
+	outline: none;
+}
+a img, img a, img {
+	border: none;
+}
+a {
+	outline: none;
+}
+h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+	padding: 0;
+	margin: 0;
+}
+.clearer{
+	clear: both;
+	line-height: 0px;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+div.BKAHeader {
+    position: absolute;
+    background: #FFFFFF;
+    border: solid 1px #ECECEC;
+    padding: 3px 6px 3px 6px;
+    font-family: Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+div.BKAHeader span.template {
+    display: block;
+    font-family: Arial;
+    font-size: 9px
+}
+p.noJS {
+    font-family: Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+	color: #FFF;
+    display: block;
+    width: 100%;
+    padding: 4px 0 3px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: #F24E31;
+}
+div.siteContainer {
+	color: #5C6A76;
+	text-align: left;
+	width: 990px;
+	margin: 0 auto;
+	padding: 0;
+}
+/***** Lists *****/
+ul {
+	margin: 10px 0 30px 10px;
+	list-style:none;
+}
+ul li{
+	margin: 0 0 5px 0;
+	padding:  0 0 0 15px;
+	background:url(../Images/UI/DEFINETHIS.gif) no-repeat center left;	
+	font-size:13px;
+	color:#333;
+	line-height:160%;
+}
+
+ol {
+	margin: 10px 0 30px 30px;
+}
+ol li{
+	margin: 0 0 5px 0;
+	padding:  0 ;
+	font-size:13px;
+	color:#333;
+	line-height:160%;
+}
+
+/***** Tables *****/
+ 
+
+
+table{
+	margin:0 0 20px 0;
+	color:#666;
+	font-size:13px;
+	background:#EEE;
+}
+th{
+	padding:3px;	
+	background:#FFF;
+}
+td{
+	padding:3px;	
+	background:#FFF;
+}
+/***** Global Classes *****/
+.clear         { clear:both; }
+.float-left    { float:left; }
+.float-right   { float:right; }
+ 
+.text-left     { text-align:left; }
+.text-right    { text-align:right; }
+.text-center   { text-align:center; }
+.text-justify  { text-align:justify; }
+ 
+.bold          { font-weight:bold; }
+.italic        { font-style:italic; }
+.underline     { border-bottom:1px solid; }
+.highlight     { background:#ffc; }
+ 
+.wrap          { width:960px;margin:0 auto; }
+ 
+.img-left      { float:left;margin:4px 10px 4px 0; }
+.img-right     { float:right;margin:4px 0 4px 10px; }
+ 
+.nopadding     { padding:0; }
+.noindent      { margin-left:0;padding-left:0; }
+.nobullet      { list-style:none;list-style-image:none; }
+/*~~~~~~~~~~~~~~~~~global styles end~~~~~~~~~~~~~~~~~*/
+
+
+/*~~~~~~~~~~~~~~~~~ browser upgrade css ~~~~~~~~~~~~~~~~~*/
+#ie6{
+	width:100%;
+	display:none;
+	margin:0 auto;	
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:14px;
+	background:#FFF;
+	line-height:18px;
+	text-align:center;	
+	border-bottom:5px solid #999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;	
+}
+.ie6 #ie6, .ie7 #ie6, .ie8 #ie6{
+	display:block;	
+}
+#ie6 .inner{
+	width:960px;
+	display:block;
+	margin:0 auto;
+	padding:20px 0 20px 0;	
+	text-align:center;
+}
+#ie6 .inner p{
+	margin: 0 auto;
+	display:block;
+	width:480px;
+	margin-bottom:20px;	
+}
+#ie6 a{
+	width:100px;	
+	display:inline-block;
+	text-align:center;
+	vertical-align:text-top;
+	font-size:12px;
+	margin-right:20px;
+	text-decoration:none;
+	color:#000;
+}
+#ie6 a#close_ie6upgrade{
+	width:auto;	
+	font-size:14px;
+	background:#CCC;
+	border:1px solid #666;
+	padding:5px 10px 5px 10px;
+	margin:20px 0 0 0;
+}
+#ie6 a#close_ie6upgrade:hover{
+	background:#f5f5f5;
+}
+
+/*~~~~~~~~~~~~~~~~~ end browser upgrade css ~~~~~~~~~~~~~~~~~*/

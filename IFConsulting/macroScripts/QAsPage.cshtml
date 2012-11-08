@@ -1,0 +1,34 @@
+﻿@using umbraco.MacroEngines
+@inherits DynamicNodeContext
+
+           
+@{    
+    foreach (var item in Model.Children)
+    {           
+	    var answerID = @item.Id.ToString();
+        <div class="r_news">
+        <ul>
+            <li><a style="font-size:14px; font-weight:normal;cursor:pointer" onClick='$("#@answerID" ).toggle( "scale", {}, 0 )'> @item.question </a> </li>
+            </ul>
+
+            <div id="@answerID" style="margin-top:-10px; display:none">   
+                @item.answer
+            </div>
+        </div>
+    }     
+}
+
+<script type="text/javascript">
+    $(function () {
+        
+        @if (HttpContext.Current.Request.QueryString["id"] != null)
+        {
+        <text>
+        var qaId = '@HttpContext.Current.Request.QueryString["id"]';
+        if ($('#' + qaId).length > 0) {
+            $('#' + qaId).toggle("scale", { }, 0);
+        }
+        </text>
+        }
+    });
+</script>

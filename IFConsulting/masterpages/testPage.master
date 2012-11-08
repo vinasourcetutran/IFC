@@ -1,0 +1,27 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+
+
+<asp:content ContentPlaceHolderId="Content" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            alert('Test');
+            $('#btnTest').click(function (e) {
+                alert('Test');
+                e.preventDefault();
+                $.post("/handlers/ImportData.ashx",
+                    {
+                        data: 'Test'
+                    },
+                    function (data) {
+                        if (!data.Error) {
+                            alert(data.Message);
+                        }
+                        else {
+                            alert(data.Message);
+                        }
+                    }, 'json');
+            });
+        });
+    </script>
+    <button id="btnTest">Test</button>
+</asp:content>

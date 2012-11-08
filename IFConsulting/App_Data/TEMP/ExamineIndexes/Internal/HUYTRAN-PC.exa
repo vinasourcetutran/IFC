@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-16"?>
+<dictionary>
+  <item>
+    <key>
+      <EXAFields>Name</EXAFields>
+    </key>
+    <value><![CDATA[HUYTRAN-PC]]></value>
+  </item>
+  <item>
+    <key>
+      <EXAFields>Created</EXAFields>
+    </key>
+    <value><![CDATA[2012-09-26 16:52:34.281]]></value>
+  </item>
+  <item>
+    <key>
+      <EXAFields>Updated</EXAFields>
+    </key>
+    <value><![CDATA[2012-09-26 17:02:35.167]]></value>
+  </item>
+  <item>
+    <key>
+      <EXAFields>IsMaster</EXAFields>
+    </key>
+    <value><![CDATA[True]]></value>
+  </item>
+</dictionary>

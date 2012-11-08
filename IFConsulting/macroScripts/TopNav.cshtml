@@ -1,0 +1,14 @@
+﻿@inherits umbraco.MacroEngines.DynamicNodeContext
+@using umbraco.MacroEngines;
+@using System.Configuration;
+
+
+<ul id="Nav">
+    <li id="nav00"><a href="/" title="International Insurance">International Insurance</a></li>
+    <li id="nav01"><a href="/Services/" title="Services">Services</a></li>
+    <li id="nav02"><a href="/company/" title="Company">Company</a></li>
+    <li id="nav03"><a href="/clients/" title="Clients">Clients</a></li>
+    <li id="nav06"><a href="/Download" title="Download">Download</a></li>
+    <li id="nav04"><a href="@Model.AncestorOrSelf(1).GetPropertyValue("blogRefLink")" title="Risk Blog">Risk Blog</a></li>
+    @*<li id="nav05"><a href="/Search" title="Compare Prices">Compare Prices</a></li>*@
+</ul>

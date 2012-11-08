@@ -1,0 +1,24 @@
+﻿@using umbraco.MacroEngines
+@inherits DynamicNodeContext
+
+           
+<style type="text/css">
+    div.news_item a img { max-width: 211px; max-height: 122px;}
+    div.img-wrapper { width: 211px; height: 122px; }
+</style>
+@{    
+    foreach (var item in Model.Children)
+    {
+        <div class="news_item" style="width: 240px; float: left;">
+            <a href="@item.Url" title="Read more"><h2> @item.title </h2></a>
+            <div class="img-wrapper">
+                <a href="@item.Url" title="Read more"><img alt="" src="@item.image" /></a>
+            </div>
+            <div class="news_more" style="margin-right: 30px;">
+                <br />
+                <a href="@item.Url" title="Read more">More</a>
+            </div>
+            <div class="clear25"></div>
+        </div>
+    }
+}

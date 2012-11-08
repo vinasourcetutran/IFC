@@ -1,0 +1,85 @@
+﻿@{    
+        umbraco.NodeFactory.Node testimonial = new umbraco.NodeFactory.Node(1377);
+}
+<div class="box_testimonial">
+    <div class="box1">
+        <div class="img_testimonial">
+            <img alt="" src='@testimonial.Properties["image"]' />
+        </div>
+        <div class="text_testimonial">
+            <span class="quote_top"></span>
+            <p>
+                @Html.Raw(testimonial.Properties["content"].Value)</p>
+            <span class="quote_bottom"></span>
+        </div>
+        <div class="question_testimonial">
+            <h2 class="question_testimonial_title">
+                Questions ?</h2>
+            <div class="clear">
+            </div>
+            @if (!string.IsNullOrEmpty(testimonial.Properties["vietnamPhoneNumber"].Value))
+            {
+            <div class="question_testimonial_item">
+                <div class="question_testimonial_col1">
+                    <img alt="Viet Nam" src="/images/vie.png" />
+                </div>
+                <div class="question_testimonial_col2">
+                    <span>@testimonial.Properties["vietnamPhoneNumber"]</span>
+                </div>
+            </div>
+            <div class="clear10">
+            </div>
+            }
+            @if (!string.IsNullOrEmpty(testimonial.Properties["usPhoneNumber"].Value))
+            {
+            <div class="question_testimonial_item">
+                <div class="question_testimonial_col1">
+                    <img alt="USA" src="/images/usa.png" />
+                </div>
+                <div class="question_testimonial_col2">
+                    <span>@testimonial.Properties["usPhoneNumber"]</span>
+                </div>
+            </div>
+            <div class="clear10">
+            </div>
+            }  
+            @if (!string.IsNullOrEmpty(testimonial.Properties["ukPhoneNumber"].Value))
+            {
+            <div class="question_testimonial_item">
+                <div class="question_testimonial_col1">
+                    <img alt="English" src="/images/eng.png" />
+                </div>
+                <div class="question_testimonial_col2">
+                    <span>@testimonial.Properties["ukPhoneNumber"]</span>
+                </div>
+            </div>
+            <div class="clear10">
+            </div>
+            } 
+            @if (!string.IsNullOrEmpty(testimonial.Properties["skype"].Value)) {
+            <div class="question_testimonial_item">
+                <div class="question_testimonial_col1">
+                    <img alt="Skype Name" src="/images/skype_icon.png" />
+                </div>
+                <div class="question_testimonial_col2">
+                    <span>@testimonial.Properties["skype"]</span>
+                </div>
+            </div>
+            <div class="clear10">
+            </div>
+            } 
+            @if (!string.IsNullOrEmpty(testimonial.Properties["email"].Value)) {
+            <div class="question_testimonial_item">
+                <div class="question_testimonial_col1">
+                    <img alt='@testimonial.Properties["email"]' src="/images/email_icon.png" />
+                </div>
+                <div class="question_testimonial_col2">
+                    <span>@testimonial.Properties["email"]</span>
+                </div>
+            </div>
+            }
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>

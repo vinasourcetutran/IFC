@@ -1,0 +1,4 @@
+D:\projects\IFConsulting\git\dev\IFC.Common\bin\Debug\IFC.Common.dll
+D:\projects\IFConsulting\git\dev\IFC.Common\bin\Debug\IFC.Common.pdb
+D:\projects\IFConsulting\git\dev\IFC.Common\obj\Debug\IFC.Common.dll
+D:\projects\IFConsulting\git\dev\IFC.Common\obj\Debug\IFC.Common.pdb

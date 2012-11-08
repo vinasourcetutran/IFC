@@ -1,0 +1,133 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+ <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
+<style type="text/css">
+        span.required
+        {
+            color: Red;
+        }
+        input.error, select.error, textarea.error
+        {
+            border: 1px solid #ff0000 !important;
+            background-color: #ffeeee !important;
+        }
+    </style>
+    
+    <script type="text/javascript">
+
+        $(function() {
+            var premiumID = '<%=Request.QueryString["premiumId"] %>';
+            $('#apply-submit').click(function(e) {
+                e.preventDefault();
+                var result = checkValidContactFields();
+                if (result == '') {
+
+                    $('#apply-submit').hide();
+                    $('#imgLoaderContact').show();
+                    $.post("/handlers/ApplyForm.ashx",
+                        {
+                            name: $('#loading-name').val(),
+                            email: $('#loading-email').val(),
+                            premiumID: premiumID,
+                            message: $('#message').val()
+                        },
+                        function(data) {
+
+                            $('#apply-submit').show();
+                            $('#imgLoaderContact').hide();
+                            if (!data.Error) {
+                                //success!                                
+                                alert(data.Message);
+                            }
+                            else {
+                                alert(data.Message);
+                            }
+                        }, 'json');
+                }
+                else
+                    alert(result);
+            });
+        });
+
+        function checkValidContactFields() {
+            var result = '';
+            if ($('#loading-name').val() == '') {
+                result += 'Please enter your name\n';
+                $('#loading-name').addClass('error');
+            }
+            
+            if ($('#loading-email').val() == '') {
+                result += 'Please enter your email address\n';
+                $('#loading-email').addClass('error');
+            }
+            else if (!isValidEmail($('#loading-email').val())) {
+                result += 'Please enter your valid email address\n';
+                $('#loading-email').addClass('error');
+            }
+            
+            return result;
+        }
+
+        function isValidEmail(email) {
+            return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
+        }
+    </script>
+
+    <div class="loading-wrapper">
+        <div class="loading-head">
+            <div class="loading-logo">
+                <img src="/images/logo1.jpg" alt="" />
+                <div class="loading-supplier-logo">
+                    <%--<img src="/images/IMG_Europe_logo1.png" alt="" />--%>
+                    <umbraco:Macro ID="Macro1" Alias="ApplyFormLogo" runat="server" />
+                </div>
+            </div>
+        </div>
+        <div class="loading-leftcol">
+            <div class="loading-description">
+                <umbraco:Item field="description" runat="server" />
+            </div>
+            <div class="loading-input-field">
+                <label for="loading-name" class="input-label"> Name</label>
+                <input type="text" name="loading_name" id="loading-name" size="60" class="input-area" value="" />
+                <div class="clear"></div>
+            </div>
+            <div class="loading-input-field">
+                <label for="loading-email" class="input-label">Email</label>
+                <input type="text" name="loading_email" id="loading-email" size="60" class="input-area" value="" />
+                <div class="clear"></div>
+            </div>
+            <div class="loading-input-field-tip">
+                <p><umbraco:Item field="tip" runat="server" /></p>
+            </div>
+            <div class="loading-input-field-btn">
+                <input type="submit" value="" id="apply-submit" class="loading-submit" />
+                 <img id="imgLoaderContact" src="/images/loader.gif" style="display: none; margin-left:160px" alt="loading..." />   
+            </div>
+        </div>
+        <div class="loading-rightcol">
+            <div class="loading-privacy-image">
+                <img alt="" src="/images/your-privacy-is-important-to-us.png" />
+            </div>
+            <p class="loading-your-privacy-is-important">
+                <umbraco:Item field="privacy" runat="server" />
+                <br /><br />
+                <a class="loading-tooltip" href="#">
+                    <umbraco:Item field="toolTip" runat="server" />
+                    <span class="loading-classic">
+                        <umbraco:Item field="toolTipDescription" runat="server" />
+                    </span>
+                </a>
+            </p>
+            <div class="loading-truste-image">
+                <a href="#" target="_blank">
+                    <img src="/images/truste-color-vertical.png" alt="" border="0" />
+                </a>
+            </div>
+        </div>
+    </div>
+    
+ 
+</asp:Content>

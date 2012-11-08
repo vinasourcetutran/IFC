@@ -1,0 +1,187 @@
+﻿@using Utility
+@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@inherits DynamicNodeContext
+@{
+    if (HttpContext.Current.Request.QueryString["node"] == null || HttpContext.Current.Request.QueryString["node"].Trim() == "")
+    {
+        HttpContext.Current.Response.Redirect("~/Home");
+    }
+    dynamic Premium = new DynamicNode(HttpContext.Current.Request.QueryString["node"]);
+    dynamic Plan = Premium.Parent;
+    dynamic Insurer = Plan.Parent;
+    var hasMoreDescription = Insurer.HasValue("descriptionMore") && Insurer.descriptionMore.ToString().Trim() != "";
+
+    string url = null;
+    if (HttpContext.Current.Request.QueryString["data"] != null && HttpContext.Current.Request.QueryString["data"].Trim() != "")
+    {
+        url = "/SearchResult?data=" + HttpContext.Current.Request.QueryString["data"];
+    }
+}
+                    
+
+<div id="customer-promise-col-left">
+            <div class="fleft product-main">
+            
+            <div id="product-info-detail">
+                <div class="fleft company-logo">
+                    <img alt="logoImage" src="@Insurer.logo" border="0" /><br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <span class="underwriter">A. M. BEST RATING</span><br />
+                    <span class="rating">N/A</span>
+                </div>
+                <!-- .fleft.company-logo -->
+                <div class="fleft company-info">
+                	<h1 class="company-h1-title">@Premium.Name<br /><span>@Insurer.Name</span></h1>
+                    <div class="company-description">
+                        <div id="main-description">@Insurer.description &nbsp;
+                        </div>
+                        @if (hasMoreDescription)
+                        {
+                        <div id="more-description" style="display: none">@Insurer.descriptionMore</div>
+                        <div class="news_more2"><br /><a id="read-more" href="#" title="Read more">Read more</a></div>
+                        }
+                        <div class="clear"></div>
+                    </div>
+                    <div id="company-get-quotes-img">
+                    	<div class="price"><span>$@UtilityIFC.GetRangeFee(Premium)</span> per/month</div>
+                        <div class="bntApply"><a href="/Apply-Form-Page?premiumId=@Premium.Id" class="ir apply-img">Apply</a></div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="clear">
+                    </div>
+                </div>
+                <!-- .fleft.company-info -->
+                <div class="clear">
+                </div>
+            </div>
+            <!-- #product-detail -->
+           
+            <div id="product-detail">
+                <div id="product-detail-overview" class="product-detail">
+                    <div id="print" class="print fright">
+                        <a href="" onclick="javascript:window.print(); return false;" title="Prink" class="link-print" id="link-print"></a>
+                    </div>
+                    <div class="breadcrumb">
+                        <a href="#">Home</a> » <a href="/Search">International Health Insurance</a> » <a href="@(url != null ? url : "/Search")">Search Results</a> »<span> @*<umbraco:Item field="title" runat="server" />*@</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="overview-title">At a glance</div>
+                    <div id="overview-col1" class="fleft">
+	                    <div class="overview-row">
+          	                    <span class="overview-label">area of cover:</span> <span class="overview-value">@UtilityIFC.GetDisplayName(Premium.area.InnerText)</span>
+                        </div>
+                        <div class="overview-row">
+                            <span class="overview-label">max benefit:</span> <span class="overview-value">@Premium.maxBenefit</span>
+                        </div>
+                        <div class="overview-row">
+                            <span class="overview-label">excess:</span> <span class="overview-value">$@Premium.excess per year</span>
+                        </div>
+                        <div class="overview-row">
+                            <span class="overview-label">In-Patient Direct Billing:</span> 
+                            <span class="overview-value">                            
+			                @if (Premium.inpatientDirectBilling)
+                            {
+				            <span> Yes </span>
+                            }
+                            else
+                            {
+                            <span> No </span>
+                            }
+		                    </span>
+                        </div>
+                        <div class="overview-row">
+                            <span class="overview-label">Emergency Assistance:</span> 
+                            <span class="overview-value">
+                            @if (Premium.emergencyAssistance)
+                            {
+				                <span> Yes </span>
+                            }
+                            else
+                            {
+                                <span> No </span>
+                            }   
+			                </span>
+                        </div>
+                        <div class="overview-row">
+                            <span class="overview-label">Claims Processing:</span> <span class="overview-value">
+                                @Premium.claimsProcessing days</span>
+                        </div>
+                        <div class="overview-row">
+                            <span class="overview-label">Application Fee:</span> 
+                            <span class="overview-value">
+                            @if (Premium.applicationFee)
+                            {
+				                <span> Yes </span>
+                            }
+                            else
+                            {
+                                <span> No </span>
+                            }
+                            </span>
+                        </div>
+                        <div class="overview-row">
+                            <span class="overview-label">Multilingual Helpline:</span> 
+                            <span class="overview-value">
+                            <span>@(Premium.multilingualHelpline ? " Yes " : " No ")</span>
+                            </span>
+                        </div>
+                        <div class="overview-row">
+                            <span class="overview-label">Medical Advisory Helpline:</span> <span class="overview-value">
+                                <span>@(Premium.medicalAdvisoryHelpline ? " Yes " : " No ")</span>
+                            </span>
+                        </div>
+                        <div class="overview-row">
+                            <span class="overview-label">Policy Brochure:</span> <span class="overview-value"><a href="@Premium.policyBrochure" target="_blank" class="download-pdf">Download</a></span>
+                        </div>
+                        <div class="overview-row">
+                            <span class="overview-label" style="height: 22px;">Payment Methods:</span> <span class="overview-value">
+ 				            @foreach (Node node in UtilityIFC.GetPayments(Premium.paymentMethods.BaseElement.ToString()))
+                            {
+                    			<img style="max-width: 30px; max-height: 22px;" src="@node.Properties["logo"]" alt="@node.Name"  />
+                            }
+                             </span>
+                        </div>
+                    </div>
+                    <div id="overview-col2" class="fleft">
+                        <ul>
+                        @foreach (var child in UtilityIFC.GetListPreniumKeyPoints(Premium))
+                        {
+                            <li class="bullet-point">@child</li>
+                            /*bullet-point bullet-circle*/
+                        }
+                        </ul>
+                    </div>
+                 	<div class="clear"></div>
+                </div>
+              
+              
+            </div>
+            <!-- #product-detail -->
+        </div>
+        </div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#read-more').click(function (e) {
+            e.preventDefault();
+            if ($(this).attr('title') == "Read more") {
+                $(this).attr('title', 'Read less').text('Read less');
+                $('#more-description').slideDown();
+            }
+            else {
+                $(this).attr('title', 'Read more').text('Read more');
+                $('#more-description').slideUp();
+            }
+        });
+    });
+</script>

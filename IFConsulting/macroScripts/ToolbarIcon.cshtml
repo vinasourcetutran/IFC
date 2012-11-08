@@ -1,0 +1,39 @@
+@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@using System.Xml.Linq
+@using IFC.Common;
+
+@{
+    Node ExternalRefNode = new Node(1342);
+    Node ChatSettingNode = new Node(1315);
+}
+
+<div class="home" style="margin-left: 50px;">
+        <a href="/" class="img_home" title="Home"></a>
+</div>
+@*<div class="download">
+    <a href="/Download" class="img_download" title="Download"></a>
+</div>  *@                 
+<div class="email">
+    <a href="/contact.aspx" class="img_email" title="Email"></a>
+</div>
+<div class="sitemap">
+    <a href="/sitemap.aspx" class="img_sitemap" title="Sitemap"></a>
+</div>
+<div class="facebook">
+    <a href="@ExternalRefNode.Properties["FacebookRef"].Value" class="img_facebook" title="Facebook"></a>
+</div>
+<div class="skype">
+    @*<a href="@ExternalRefNode.Properties["FacebookRef"].Value" class="img_skype" title="Skype"></a>*@
+    @*<a title="skype" href="skype:@(ChatSettingNode.Properties["skype"].Value)?chat" class="img_skype">$1$<img src="/templates/vtpv/images/skype.png" alt="Nick Skype status"/>#1#</a>*@
+    <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
+    <a href="skype:@(ChatSettingNode.Properties["skype"].Value)?chat">
+        <img src="http://mystatus.skype.com/mediumicon/@(ChatSettingNode.Properties["skype"].Value)" style="border: none;" width="20" height="20" alt="My status" />
+    </a>
+</div>
+<div class="yahoo" >
+    @*<a href="@ExternalRefNode.Properties["FacebookRef"].Value" class="img_yahoo" title="Yahoo"></a>*@
+    <a title="yahoo" href="ymsgr:SendIM?@(ChatSettingNode.Properties["yahoo"].Value)">
+	    <img border="0" src="http://mail.opi.yahoo.com/online?u=@(ChatSettingNode.Properties["yahoo"].Value)&amp;m=g&amp;t=0" width="20px" height="19" alt="yahoo">
+	</a>    
+</div>

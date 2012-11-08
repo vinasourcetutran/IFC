@@ -1,0 +1,70 @@
+﻿@using umbraco.MacroEngines
+@inherits DynamicNodeContext
+
+<style type="text/css">
+    p.download-section { margin-left: 20px; margin-top: 10px; margin-bottom: 10px; }
+    p.download-section a { font-size: large; text-decoration: underline }
+    table.table-download tr td {
+        border-bottom: 1px dotted #CCCCCC;
+        border-collapse: collapse;
+        padding-bottom: 1px;
+        padding-top: 1px;
+    }
+    div.pddownloadrc 
+    {
+        background: url("../images/button-download-l.png") no-repeat scroll 0 0 #008F00;
+        height: 35px;
+        line-height: 33px;
+        margin: 0 1px;
+    }
+    
+    div.pddownloadrc div 
+    {
+        background: url("../images/button-download-r.png") no-repeat scroll 100% 0 transparent;
+        height: 35px;
+        line-height: 33px;
+        padding: 0 12px 0 25px;
+    }
+    div.pddownloadrc div a { color: rgb(255, 255, 255) }
+</style>
+
+
+@if (Model.Name == "Download" && Model.Parent.NodeTypeAlias == "Home")
+{
+    <div>
+        <p>Please find here useful information that will help our clients and partners with their insurance needs.</p>
+        <p>If you can not find particular information, please contact <a href="mailto:services@insuranceinvietnam.com">services@insuranceinvietnam.com</a> and we will send right away.</p>
+        @foreach (var node in Model.Children)
+        {
+        <p class="download-section"><a href="@node.Url">@node.title</a>&nbsp;@node.description</p>
+        }
+        <p>We continue to review our website to better accomodate our community.  Should you have any suggestion to improve our site, please <a href="Contact">contact us</a> here.</p>
+    </div>
+}
+else
+{
+    <div class="service_title">
+        <h1>
+            Downloads
+        </h1>
+    </div>
+    <br/>
+    <table class="table-download">
+        <tbody>
+            @foreach (var node in Model.Children)
+            {
+            <tr>            
+                <td style="width: 100px;"><img style="max-width: 64px; max-height: 22px;" src="@node.logo" /></td>
+                <td style="width: 300px; text-decoration: underline"><a href="@node.document" target="_blank">@node.Name</a></td>
+                <td>
+                    <div class="pddownloadrc">
+                        <div>
+                            <a href="@node.document" target="_blank">Download</a>
+                        </div>
+                    </div>            
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}

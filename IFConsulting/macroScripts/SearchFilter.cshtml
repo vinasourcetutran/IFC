@@ -1,0 +1,355 @@
+﻿@using System.Text
+@using Utility
+@{
+    umbraco.NodeFactory.Node nationals = new umbraco.NodeFactory.Node(1347);
+    umbraco.NodeFactory.Node areas = new umbraco.NodeFactory.Node(1350);
+    Criteria criteria = null;
+    if (HttpContext.Current.Request.QueryString["data"] != null && HttpContext.Current.Request.QueryString["data"].Trim() != "")
+    {
+        criteria = Newtonsoft.Json.JsonConvert.DeserializeObject<Criteria>(HttpContext.Current.Request.QueryString["data"]);
+    }
+}
+
+@functions {
+
+    public string GetSexOptions(EnumSex Sex)
+    {
+        StringBuilder sb = new StringBuilder();
+        switch (Sex)
+        {
+            case EnumSex.NotChoose:
+                sb.Append("<option value='-1\' selected='selected'>-- </option>");
+                sb.Append("<option value='1'>Male</option>");
+                sb.Append("<option value='0'>Female</option>");
+                break;
+            case EnumSex.Male:
+                sb.Append("<option value='-1'>-- </option>");
+                sb.Append("<option value='1' selected='selected'>Male</option>");
+                sb.Append("<option value='0'>Female</option>");
+                break;
+            case EnumSex.Female:
+                sb.Append("<option value='-1'>-- </option>");
+                sb.Append("<option value='1'>Male</option>");
+                sb.Append("<option value='0' selected='selected'>Female</option>");
+                break;
+        }
+        return sb.ToString();
+    }
+
+    public bool IsContainPatient(Criteria Criteria, int Index)
+    {
+        return Criteria != null && Criteria.ListPatients != null && Criteria.ListPatients.Count > Index;
+    }
+    
+    public bool IsContainOption(Criteria Criteria, string Option)
+    {
+        return Criteria != null && Criteria.ListOptions != null && Criteria.ListOptions.Contains(Option); 
+    }
+}
+<script type="text/javascript">
+    $(function () {
+        $('#search-box').click(function (e) {
+            e.preventDefault();
+            if (!validate())
+                return;
+            var patients = [];
+
+            $('div.fields-inline select').filter(function () {
+                return $(this).val() != "-1";
+            }).each(function () {
+                patients.push({
+                    Sex: $(this).val(),
+                    Age: parseInt($(this).next().val())
+                });
+            });
+
+            var levels = ['In'];
+            if ($('#cover-level-out').attr('checked'))
+                levels.push('Out');
+
+            var options = [];
+            $('div#filters-box-3 .optional-filter:checked').each(function () {
+                options.push($(this).val());
+            });
+
+            var criteria = {
+                ListPatients: patients,
+                ListLevels: levels,
+                ListOptions: options
+            };
+
+            window.location = "SearchResult?data=" + encodeURIComponent(JSON.stringify(criteria));
+        });
+
+        $('input.age').focus(function () {
+            var tmp = $(this).val();
+            if (!(/^\d+$/.test(tmp))) {
+                $(this).val('');
+            }
+        });
+
+        $('input.age').blur(function () {
+            var tmp = $(this).val();
+            if (!(/^\d+$/.test(tmp))) {
+                $(this).val('Age');
+            }
+        });
+    });
+    
+    function validate() {
+        var lstSelects = $('div.fields-inline select').filter(function() {
+            return $(this).val() != "-1";
+        });
+        if (lstSelects.length == 0)
+            return false;
+        var isValid = true;
+        lstSelects.each(function (index) {
+            if ($.trim($(this).next().val()) == "" || !(/^\d+$/.test($(this).next().val()))) {
+                $(this).next().focus();
+                isValid = false;
+                return false;
+            }
+        });
+        return isValid;
+    }
+    
+</script>
+<div class="filters">
+    <div id="top-filters" class="expanded">
+        <div class="filters-box" id="filters-box-1">
+            <select id="residence-country1">
+                @foreach (umbraco.NodeFactory.Node national in nationals.Children)
+                {  
+                    <option value="@national.Properties["name"]">
+                        @national.Properties["displayName"]</option>
+                }
+            </select>
+            <select name="cover-area" id="cover-area">
+                @foreach (umbraco.NodeFactory.Node area in areas.Children)
+                {  
+                    <option value="@area.Properties["name"]">
+                        @area.Properties["displayName"]</option>
+                }
+            </select>
+        </div>
+        <div style="overflow: hidden; padding: 0px; width: 230px;" class="filters-box" id="filters-box-2">
+            <div class="fields-inline">
+                <label for="application-gender">
+                    Applicant
+                </label>
+                @{ bool isContainPatient = IsContainPatient(criteria, 0); }
+                <select name="person-gender[]" id="application-gender" class="gendre">                
+                @if (isContainPatient)
+                {
+                    @Html.Raw(GetSexOptions(criteria.ListPatients[0].Sex))
+                }
+                else
+                {
+                    <option value="-1">-- </option>
+                    <option value="1" selected="selected">Male</option>
+                    <option value="0">Female</option>   
+                }                    
+                </select>
+                <input class="age" name="person-age[]" value="@(isContainPatient ? criteria.ListPatients[0].Age.ToString() : "Age")" style="color: rgb(120, 120, 120);"
+                    type="text" />
+                <div class="clear">
+                </div>
+            </div>
+            <div class="fields-inline">
+                <label for="spouse-gender">
+                    Spouse</label>
+                @{ isContainPatient = IsContainPatient(criteria, 1); }
+                <select name="person-gender[]" id="spouse-gender" class="gendre">
+                @if (isContainPatient)
+                {
+                    @Html.Raw(GetSexOptions(criteria.ListPatients[1].Sex))
+                }
+                else
+                {
+                    <option value="-1" selected="selected">-- </option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                }
+                </select>
+                <input class="age" name="person-age[]" value="@(isContainPatient ? criteria.ListPatients[1].Age.ToString() : "Age")" style="color: rgb(120, 120, 120);"
+                    type="text" />
+                <div class="clear">
+                </div>
+            </div>
+            <div class="fields-inline">
+                <label for="child-gender-1">
+                    1st child</label>
+                @{ isContainPatient = IsContainPatient(criteria, 2); }
+                <select name="person-gender[]" id="child-gender-1" class="gendre">
+                @if (isContainPatient)
+                {
+                    @Html.Raw(GetSexOptions(criteria.ListPatients[2].Sex))
+                }
+                else
+                {
+                    <option value="-1" selected="selected">-- </option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                }
+                </select>
+                <input class="age" name="person-age[]" value="@(isContainPatient ? criteria.ListPatients[2].Age.ToString() : "Age")" style="color: rgb(120, 120, 120);"
+                    type="text" />
+                <div class="clear">
+                </div>
+            </div>
+            <div class="fields-inline">
+                <label for="child-gender-2">
+                    2nd child</label>
+                @{ isContainPatient = IsContainPatient(criteria, 3); }
+                <select name="person-gender[]" id="child-gender-2" class="gendre">
+                @if (isContainPatient)
+                {
+                    @Html.Raw(GetSexOptions(criteria.ListPatients[3].Sex))
+                }
+                else
+                {
+                    <option value="-1" selected="selected">-- </option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                }
+                </select>
+                <input class="age" name="person-age[]" value="@(isContainPatient ? criteria.ListPatients[3].Age.ToString() : "Age")" style="color: rgb(120, 120, 120);"
+                    type="text" />
+                <div class="clear">
+                </div>
+            </div>
+            <div class="fields-inline">
+                <label for="child-gender-3">
+                    3rd child</label>
+                @{ isContainPatient = IsContainPatient(criteria, 4); }
+                <select name="person-gender[]" id="child-gender-3" class="gendre">
+                @if (isContainPatient)
+                {
+                    @Html.Raw(GetSexOptions(criteria.ListPatients[4].Sex))
+                }
+                else
+                {
+                    <option value="-1" selected="selected">-- </option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                }
+                </select>
+                <input class="age" name="person-age[]" value="@(isContainPatient ? criteria.ListPatients[4].Age.ToString() : "Age")" style="color: rgb(120, 120, 120);"
+                    type="text" />
+                <div class="clear">
+                </div>
+            </div>
+            <div class="fields-inline">
+                <label for="child-gender-4">
+                    4th child</label>
+                @{ isContainPatient = IsContainPatient(criteria, 5); }
+                <select name="person-gender[]" id="child-gender-4" class="gendre">
+                @if (isContainPatient)
+                {
+                    @Html.Raw(GetSexOptions(criteria.ListPatients[5].Sex))
+                }
+                else
+                {
+                    <option value="-1" selected="selected">-- </option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                }
+                </select>
+                <input class="age" name="person-age[]" value="@(isContainPatient ? criteria.ListPatients[5].Age.ToString() : "Age")" style="color: rgb(120, 120, 120);"
+                    type="text" />
+                <div class="clear">
+                </div>
+            </div>
+            <div class="fields-inline">
+                <label for="child-gender-5">
+                    5th child</label>
+                @{ isContainPatient = IsContainPatient(criteria, 6); }
+                <select name="person-gender[]" id="child-gender-5" class="gendre">
+                @if (isContainPatient)
+                {
+                    @Html.Raw(GetSexOptions(criteria.ListPatients[6].Sex))
+                }
+                else
+                {
+                    <option value="-1" selected="selected">-- </option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                }
+                </select>
+                <input class="age" name="person-age[]" value="@(isContainPatient ? criteria.ListPatients[6].Age.ToString() : "Age")" style="color: rgb(120, 120, 120);"
+                    type="text" />
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <div style="overflow: hidden; padding: 0px; width: 230px;" class="filters-box" id="filters-box-3">
+            <div class="filter-benefit">
+                <label>
+                    <input name="benefits[]" class="checkbox-benefit" disabled="disabled" checked="checked"
+                        value="In" type="checkbox" />
+                    In-Patient
+                </label>
+            </div>
+            <div class="filter-benefit">
+                <label>
+                    <input id="cover-level-out" @((criteria != null && criteria.ListLevels != null && criteria.ListLevels.Contains("Out")) ? "checked=\"checked\"" : "") 
+                           name="benefits[]" class="checkbox-benefit" value="Out" type="checkbox" />
+                    Out-Patient
+                </label>
+            </div>
+            <div class="filter-benefit">
+                <label>
+                    <input name="benefits[]" class="checkbox-benefit optional-filter" value="Maternity" type="checkbox"
+                           @(IsContainOption(criteria, "Maternity") ? "checked='checked'" : "") />
+                    Maternity
+                </label>
+            </div>
+            <div class="filter-benefit">
+                <label>
+                    <input name="benefits[]" class="checkbox-benefit optional-filter" value="Dental" type="checkbox"
+                           @(IsContainOption(criteria, "Dental") ? "checked='checked'" : "") />
+                    Dental
+                </label>
+            </div>
+            <div class="filter-benefit">
+                <label>
+                    <input name="benefits[]" class="checkbox-benefit optional-filter" value="Well-Being" type="checkbox" 
+                           @(IsContainOption(criteria, "Well-Being") ? "checked='checked'" : "") />
+                    Well-Being
+                </label>
+            </div>
+            <div class="filter-benefit">
+                <label>
+                    <input name="benefits[]" class="checkbox-benefit optional-filter" value="Psychiatric" type="checkbox" 
+                           @(IsContainOption(criteria, "Psychiatric") ? "checked='checked'" : "") />
+                    Psychiatric
+                </label>
+            </div>
+            <div class="filter-benefit">
+                <label>
+                    <input name="benefits[]" class="checkbox-benefit optional-filter" value="Evacuation" type="checkbox" 
+                           @(IsContainOption(criteria, "Evacuation") ? "checked='checked'" : "") />
+                    Emergency Evacuation
+                </label>
+            </div>
+            <div class="filter-benefit">
+                <label>
+                    <input name="benefits[]" class="checkbox-benefit optional-filter" value="Optical" type="checkbox" 
+                           @(IsContainOption(criteria, "Optical") ? "checked='checked'" : "") />
+                    Optical
+                </label>
+            </div>
+            <div class="filter-benefit">
+                <label>
+                    <input name="benefits[]" class="checkbox-benefit optional-filter" value="ChronicConditions" type="checkbox" 
+                           @(IsContainOption(criteria, "ChronicConditions") ? "checked='checked'" : "") />
+                    Chronic Conditions
+                </label>
+            </div>
+        </div>
+        <div id="search-box">
+        </div>
+    </div>
+</div>
+<div class="clear15">
+</div>

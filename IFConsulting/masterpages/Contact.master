@@ -1,0 +1,203 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="Content" runat="server">
+    <style type="text/css">
+        span.required
+        {
+            color: Red;
+        }
+        input.error, select.error, textarea.error
+        {
+            border: 1px solid #ff0000 !important;
+            background-color: #ffeeee !important;
+        }
+    </style>
+    <script type="text/javascript">
+
+        $(function() {
+            $('#email-us-submit').click(function(e) {
+                e.preventDefault();
+                var result = checkValidContactFields();
+                if (result == '') {
+
+                    $('#email-us-submit').hide();
+                    $('#imgLoaderContact').show();
+                    $.post("/handlers/Contact.ashx",
+                        {
+                            firstName: $('#firstName').val(),
+                            lastName: $('#lastName').val(),
+                            email: $('#email').val(),
+                            subject: $('#subject').val(),
+                            message: $('#message').val(),
+                            country: $('#country').val(),
+                            residence: $('#residence').val()
+                        },
+                        function(data) {
+
+                            $('#email-us-submit').show();
+                            $('#imgLoaderContact').hide();
+                            if (!data.Error) {
+                                //success!                                
+                                alert(data.Message);
+                            }
+                            else {
+                                alert(data.Message);
+                            }
+                        }, 'json');
+                }
+                else
+                    alert(result);
+            });
+        });
+
+        function checkValidContactFields() {
+            var result = '';
+            if ($('#firstName').val() == '') {
+                result += 'Please enter your first name\n';
+                $('#firstName').addClass('error');
+            }
+            else {
+                $('#firstName').removeClass('error');
+            }
+
+            if ($('#lastName').val() == '') {
+                result += 'Please enter your last name\n';
+                $('#lastName').addClass('error');
+            }
+            else {
+                $('#lastName').removeClass('error');
+            }
+
+            if ($('#country').val() == '') {
+                result += 'Please enter your country\n';
+                $('#country').addClass('error');
+            }
+            else {
+                $('#country').removeClass('error');
+            }
+
+            if ($('#residence').val() == '') {
+                result += 'Please enter your residence\n';
+                $('#residence').addClass('error');
+            }
+            else {
+                $('#residence').removeClass('error');
+            }
+
+            if ($('#email').val() == '') {
+                result += 'Please enter your email address\n';
+                $('#email').addClass('error');
+            }
+            else if (!isValidEmail($('#email').val())) {
+                result += 'Please enter your valid email address\n';
+                $('#email').addClass('error');
+            }
+            else {
+                $('#email').removeClass('error');
+            }
+            
+            if ($('#subject').val() == '') {
+                result += 'Please choose your subject\n';
+                $('#subject').addClass('error');
+            }
+            else {
+                $('#subject').removeClass('error');
+            }
+
+            if ($('#message').val() == '') {
+                result += 'Please enter your message\n';
+                $('#message').addClass('error');
+            }
+            else {
+                $('#message').removeClass('error');
+            }
+            return result;
+        }
+
+        function isValidEmail(email) {
+            return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
+        }
+    </script>
+    <div class="contact_body" id='divContact'>
+        <h1 class="sitemap_title">
+            Contact IF Consulting</h1>
+        <div class="contact_form">
+            <div id="contact-wide-left">
+                <div id="contact-email-us-desc">
+                    If you have help questions, any great ideas, discovered errors, are from the media,
+                    or have business proposals for us, please enter them below. Try to be as specific
+                    as possible, and be sure to enter your correct email address so that we can get
+                    back to you.
+                </div>
+                <div id="email-us">
+                    <div class="input-field">
+                        <label for="first_name" class="input-label">
+                            First Name <span class="required">(*)</span></label>
+                        <input type="text" name="first_name" id="firstName" class="input-area" value="">
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <label for="last_name" class="input-label">
+                            Last Name <span class="required">(*)</span></label>
+                        <input type="text" name="last_name" id="lastName" class="input-area" value="">
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <label for="country" class="input-label">
+                            Country <span class="required">(*)</span></label>
+                        <input type="text" name="country" id="country" class="input-area" value="">
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <label for="resident" class="input-label">
+                            Residence <span class="required">(*)</span></label>
+                        <input type="text" name="residence" id="residence" class="input-area" value="">
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <label for="email" class="input-label">
+                            Email Address <span class="required">(*)</span></label>
+                        <input type="text" name="email" id="email" class="input-area" value="">
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <label for="subject" class="input-label">
+                            Subject <span class="required">(*)</span></label>
+                        <select name="subject" id="subject" class="input-area">
+                            <option value="">Type of query…</option>
+                            <option value="Quotation">Quotation</option>
+                            <option value="Help question">Help question</option>
+                            <option value="Claims help">Claims help</option>
+                            <option value="Business proposals">Business proposals</option>
+                            <option value="Ideas">Ideas</option>
+                            <option value="Errors / Bugs">Errors / Bugs</option>
+                        </select>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <label for="message" class="input-label">
+                            Message <span class="required">(*)</span></label>
+                        <textarea name="message" id="message" class="input-area"></textarea>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="input-field margin-top-20">
+                        <input type="button" name="submit" id="email-us-submit"/>
+                        <img id="imgLoaderContact" src="/images/loader.gif" style="display: none; margin-left:160px" alt="loading..." />                        
+                    </div>
+                </div>
+            </div>
+            <div id="contact-narrow-right">
+                <umbraco:Macro Alias="GetListContact1" runat="server" />
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+</asp:Content>

@@ -1,0 +1,39 @@
+﻿@using umbraco.MacroEngines
+@inherits DynamicNodeContext
+@using umbraco.NodeFactory
+         
+@{
+    
+    Node nodeParent = new Node(1203);
+       
+    <ul class="ihi-menu-left">        
+    @foreach (Node item  in nodeParent.Children)
+    {
+        if(item.Id == Model.Id)
+        {
+            <li class="menu-list no-dotted-border">
+                <a href="@item.Url" class="current">@item.Properties["Title"].Value</a>
+            </li>
+        }
+        else
+        {
+            <li class="menu-list">
+                        <a href="@item.Url">@item.Properties["Title"].Value</a>
+            </li>
+        }        
+    }
+ 	@if(Model.Id == 1242 )
+        {
+            <li class="menu-list no-dotted-border">
+                <a href="/QAs" class="current">FAQs</a>
+            </li>
+        }
+        else
+        {
+            <li class="menu-list">
+                        <a href="/QAs">FAQs</a>
+            </li>
+        }
+    </ul>   
+          
+  }

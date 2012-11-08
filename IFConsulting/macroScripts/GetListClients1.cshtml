@@ -1,0 +1,32 @@
+﻿@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@inherits DynamicNodeContext
+
+<style type="text/css">
+    div.country-col-full img { max-height: 73px; max-width: 150px; }
+    div.country-col-full div.img-wrapper { width: 150px; height: 73px; }
+</style>
+@{
+    Node clientsNode = new Node(1255);
+   
+    <div class="country-col-full">
+    @for (int i = 0; i < clientsNode.Children.Count; i++) 
+    {
+        var item = clientsNode.Children[i];
+        <div class="company-icon-grid">
+            <a href="@item.Properties["Link"]" title="@item.Properties["Title"]" >
+                <div class="img-wrapper">
+		            <img alt="@item.Properties["Title"]" src="@item.Properties["Image"]" /> 
+                </div>
+	        </a>
+            <h2><a href="@item.Properties["Link"]">@item.Properties["Title"]</a></h2>                
+        </div>
+        if ((i + 1) % 4 == 0)
+        { 
+            @Html.Raw(@"</div><div class=""clear""></div><div class=""country-col-full"">")
+                
+        }
+    }
+    </div>
+    <div class="clear"></div>
+}

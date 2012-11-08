@@ -1,0 +1,17 @@
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\IFC.Business.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\IFC.Business.pdb
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\cms.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\IFC.Data.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\interfaces.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\businesslogic.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\umbraco.DataLayer.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\ClientDependency.Core.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\HtmlAgilityPack.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\TidyNet.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\MySql.Data.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\bin\Debug\IFC.Data.pdb
+D:\projects\IFConsulting\git\dev\IFC.Business\obj\Debug\IFC.Business.csprojResolveAssemblyReference.cache
+D:\projects\IFConsulting\git\dev\IFC.Business\obj\Debug\IFC.Business.dll
+D:\projects\IFConsulting\git\dev\IFC.Business\obj\Debug\IFC.Business.pdb

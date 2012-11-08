@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+
+
+<asp:Content ContentPlaceHolderID="Content" runat="server">
+    <script runat="server">    
+        /*umbraco.NodeFactory.Node qas = new umbraco.NodeFactory.Node(1242);
+        umbraco.NodeFactory.Node areas = new umbraco.NodeFactory.Node(1350);
+        umbraco.NodeFactory.Node prems = new umbraco.NodeFactory.Node(1444);*/
+
+    </script>
+    <!-- latest jQuery direct from google's CDN -->
+    <link type="text/css" href="/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+    <link type="text/css" href="/css/jquery-ui-1.7.3.custom.css" rel="stylesheet" media="all" />
+    <script type="text/javascript" src="/js/jquery-ui-1.7.3.custom.min.js"></script>
+    <!-- the mousewheel plugin -->
+    <script type="text/javascript" src="/js/jquery.mousewheel.js"></script>
+    <!-- the jScrollPane script -->
+    <script type="text/javascript" src="/js/jquery.jscrollpane.min.js"></script>
+    <!-- scripts specific to this demo site -->
+    <script type="text/javascript" src="/js/want-to-talk.js"></script>
+    <script src="/js/knockout-2.1.0.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript" id="Script1">
+        $(function () {
+            <% if (System.Web.HttpContext.Current.Request.QueryString["filter"] != null) {%>
+            
+            //var tmp = eval(<%= System.Web.HttpContext.Current.Server.UrlDecode(System.Web.HttpContext.Current.Request.QueryString["filter"]) %>);
+            //alert(tmp.p);
+            
+            <% } else { %>
+
+            //alert('456');
+
+            <% } %>
+            $('.filters-box').jScrollPane({ showArrows: true });
+
+            $("#slider-1").slider({
+                range: true,
+                min: minFee,
+                max: 10000,
+                values: [minFee, 10000],
+                slide: function (event, ui) {
+                    $(this).parent('.left-filter').find('span.range-left').html('$' + ui.values[0]);
+                    $(this).parent('.left-filter').find('span.range-right').html('$' + ui.values[1]);
+                },
+                stop: function (event, ui) {
+                    $('input#priceMinValue').val(ui.values[0]).change();
+                    $('input#priceMaxValue').val(ui.values[1]).change();
+                }
+            });
+            $('span.range-left').html('$' + minFee);
+            $('span.range-right').html('$' + 10000);
+        });
+    </script>
+    <!-- InstanceEndEditable -->
+    <umbraco:Macro Alias="SearchFilter" runat="server" />
+    <umbraco:Macro Alias="SearchResult" runat="server" />
+    <div class="clear15">
+    </div>
+    
+</asp:Content>

@@ -1,0 +1,28 @@
+﻿@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@inherits DynamicNodeContext
+
+<h2>Insurers</h2>
+We have selected Insurers reputable in their field with their own strengths and
+weaknesses. Some will apply 'local' rules and practices, others international best
+practices.<br />
+<br />
+Click on each insurer's logo to get to their website and know more about them.<br />
+<br />
+<div class="clear"></div>
+
+@{
+    Node QAsNode = new Node(1255);
+    
+    <div class="insurers">
+        
+        @foreach (Node item in QAsNode.Children)
+        { 
+        <div class="insurers_logo">
+            <a href="@item.Properties["Link"]" title="@item.Properties["Title"]" > 
+		        <img alt="@item.Properties["Title"]" src="@item.Properties["Image"]" /> 
+	        </a>
+     	</div>
+        }        
+    </div>
+}

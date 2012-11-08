@@ -1,0 +1,10 @@
+﻿Code version: 6.0.2202.688
+Assembly name IFC.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null mvid {528e7c93-db7b-4b92-92d7-12a164a52e02}
+* ref mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {fcb9dac8-ae3a-4886-93b0-f4cd5b0db0be}
+* ref IFC.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  mvid {52fb3ebd-010b-44ea-9f3d-e76656edc318}
+* ref System.Data.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {e3eb0ee4-1607-46a8-8eb7-52457b3564b2}
+* ref System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {c08d55d3-6463-439d-b112-60f6502ec141}

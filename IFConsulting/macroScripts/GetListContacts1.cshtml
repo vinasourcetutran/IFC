@@ -1,0 +1,148 @@
+﻿@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@inherits DynamicNodeContext
+
+<link href="/css/popbox/popbox.css" rel="stylesheet" type="text/css" />
+<script src="/scripts/popbox/popbox.js" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
+<script type="text/javascript">
+    var map;
+    var marker;
+    var isMapInitialize = false;
+
+    $(function () {
+        $('#contact').popbox({
+            open: '.inline'
+        });
+
+        $('a.inline').click(function (e) {
+            e.preventDefault();
+            var parent = $(this).parent();
+            $('.dialog-working-time').html(parent.find('.contact-working-time').val() + '<br/>');
+            $('.dialog-tel').next().html(parent.find('.contact-tel').val());
+            $('.dialog-fax').next().html(parent.find('.contact-fax').val());
+            var email = parent.find('.contact-email').val();
+            $('.dialog-email').next().html(email).attr('href', email);
+            $('.dialog-address').html(parent.find('.contact-address').val());
+            $('.dialog-title').html('<p style="width: 450px;"><span class="contact_location_title">' + $(this).closest('ul').prev().text() + '</span>' + ' <span style="font-size: 18px;">→</span>' + '<span style="color: rgb(22, 185, 225);">' + $(this).text() + '</span>' + '</p>');
+            viewGoogleMap(convertToLatLong(parent.find('.contact-google-map').val()));
+        });
+        
+        $('.close').click(function (e) {
+            e.preventDefault();
+        });
+
+        $('.box').hide();
+    });
+    
+    function initialize (latlong) {
+        var mapOptions = {
+            zoom: 16,
+            center: latlong,
+            mapTypeControl: false,
+            /*mapTypeControlOptions : {
+            style : google.maps.MapTypeControlStyle.DROPDOWN_MENU
+            },*/
+            zoomControl: true,
+            /*zoomControlOptions : {
+            style : google.maps.ZoomControlStyle.SMALL
+            },*/
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map_canvas'),
+					mapOptions);
+
+        marker = new google.maps.Marker({
+            position: map.getCenter(),
+            map: map,
+            title: 'IFC'
+        });
+    }
+    
+    function viewGoogleMap(latlong) {
+        if (!isMapInitialize) {
+            initialize(latlong);
+            isMapInitialize = true;
+        }
+        else {
+            marker.setMap(null);
+            marker = new google.maps.Marker({
+                position: latlong,
+                map: map,
+                title: 'IFC'
+            });
+            map.setCenter(latlong);
+        }
+    }
+    
+    function convertToLatLong(str) {
+        var tokens = str.split(',');
+        return new google.maps.LatLng(parseFloat(tokens[0]), parseFloat(tokens[1]));
+    }
+</script>
+<style>
+    ul#contact, ul#contact ul {list-style-type: none;}
+    
+    ul#contact li ul li { margin-top: 10px; }
+    ul#contact > li { margin-top: 20px; }
+    
+    .box  
+    {
+        padding-left: 20px;
+        padding-right: 20px; 
+    }
+    
+    #map_canvas { width: 500px; height: 300px;}
+    .dialog-title { float: left; margin-top: -25px; }
+</style>
+
+
+<ul id="contact">
+@foreach (var country in Model.Children)
+{
+    <li>
+        <h2 class="contact_location_title">@country.Name</h2>
+        <ul>
+        @foreach (var item in country.Children)
+        {
+            <li>
+                <a style="font-size: 14px;" href="#@item.Id" class="inline">
+                    @item.city
+                </a>
+                <input class="contact-working-time" type="hidden" value="@item.workingTime"/>
+                <input class="contact-tel" type="hidden" value="@item.tel"/>
+                <input class="contact-fax" type="hidden" value="@item.fax"/>
+                <input class="contact-email" type="hidden" value="@item.email"/>
+                <input class="contact-google-map" type="hidden" value="@item.googleMap"/>
+                <input class="contact-address" type="hidden" value="@item.address"/>
+            </li>
+        }
+        </ul>
+    </li>
+}
+</ul>
+
+<div class='box' style="display: none;">
+    <div class='arrow'>
+    </div>
+    <div class='arrow-border'>
+    </div>
+    <div class='close'>
+    </div>
+    <div class="dialog-title">Vietnam -> Hoc Chi Minh City</div>
+    <br/>
+    <div class="dialog-content">
+        <p class="dialog-working-time"></p>
+        <p style="min-width: 300px;">
+        <span class="tel dialog-tel">Tel:</span> <span class="pnumber"></span><br />
+        <span class="tel dialog-fax">Fax:</span> <span class="pnumber"></span><br />
+        <span class="tel dialog-email">Email:</span> <a href="#"></a>
+        </p>
+        <div id="map_canvas"></div>
+        <br />
+        <p class="dialog-address" style="width: 350px;"></p> <br />
+        <br />
+    </div>
+</div>
+

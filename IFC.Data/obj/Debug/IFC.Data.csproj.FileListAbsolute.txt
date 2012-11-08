@@ -1,0 +1,5 @@
+D:\projects\IFConsulting\git\dev\IFC.Data\bin\Debug\IFC.Data.dll.config
+D:\projects\IFConsulting\git\dev\IFC.Data\bin\Debug\IFC.Data.dll
+D:\projects\IFConsulting\git\dev\IFC.Data\bin\Debug\IFC.Data.pdb
+D:\projects\IFConsulting\git\dev\IFC.Data\obj\Debug\IFC.Data.dll
+D:\projects\IFConsulting\git\dev\IFC.Data\obj\Debug\IFC.Data.pdb

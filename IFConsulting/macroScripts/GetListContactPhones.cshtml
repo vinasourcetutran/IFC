@@ -1,0 +1,32 @@
+@using umbraco.MacroEngines
+@inherits DynamicNodeContext
+
+@{
+    int display = 3;
+    var listContacts = Model.AncestorsOrSelf("Home").First().Descendants("ContactInformation");
+    int totalContact = listContacts.Count();
+}
+
+
+@if (totalContact > 0)
+{
+    int count = 0;
+    @:Call us now:             
+    for (int i = 0; i < totalContact ; i++)
+    {
+        dynamic node = listContacts[i];
+        if (!string.IsNullOrWhiteSpace(node.tel) && node.HasValue("showInFrontPage") && node.showInFrontPage)
+        {
+            if (count < display)
+            {
+                @(node.tel)<br />
+            }
+            else
+            {
+                @(node.tel)
+                break;
+            }
+            count++;
+        }
+    }
+}

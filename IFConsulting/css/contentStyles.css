@@ -1,0 +1,65 @@
+a {
+  color: #F2834B;
+  border-bottom: 1px dotted #F2834B;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 15px;
+  text-decoration: none;  
+  display: inline-block;
+}
+
+ a:hover {
+  color: #4C4B4B;
+  border-bottom: 1px dotted #4C4B4B;
+}
+a:hover, a:active { outline: 0; } /* Improve readability when focused and hovered in all browsers: people.opera.com/patrickl/experiments/keyboard/test */
+
+/* =============================================================================
+   Typography
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+  padding: 0;
+  margin: 0;
+}
+
+
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 23px;
+  color: #4C4B4B;
+  margin-bottom: 23px;
+}
+
+
+ul, ol { margin: 1em 0; padding: 0 0 0 40px; }
+dd { margin: 0 0 0 40px; }
+nav ul, nav ol { list-style: none; margin: 0; padding: 0; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+
+
+
+/* EDITOR PROPERTIES - PLEASE DON'T DELETE THIS LINE TO AVOID DUPLICATE PROPERTIES */
+h2 {
+font-family: GothamHTFMedium, Arial, Helvetica, sans-serif; 	font-size: 23px; 	font-weight: normal; 	line-height: 28px; 	color: #F2834B; 	margin-bottom: 5px;
+}
+
+h3 {
+font-family: GothamHTFMedium, Arial, Helvetica, sans-serif; 	font-size: 14px; 	font-weight: normal; 	text-transform: uppercase; 	line-height: 17px; 	color: #979396; 	margin-bottom: 4px;
+}
+
+h4 {
+font-family: GothamHTFMedium, Arial, Helvetica, sans-serif; 	font-size: 18px; 	font-weight: normal; 	line-height: 23px; 	color: #4C4B4B; 	margin-bottom: 4px;
+}
+
+h5 {
+	font-family: ArialBold, Arial, Helvetica, sans-serif; 	font-size: 12px; 	font-weight: normal; 	line-height: 23px; 	color: #4C4B4B;
+}
+

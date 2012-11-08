@@ -1,0 +1,29 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="Content" runat="server">
+<div class="company">
+	<umbraco:Item field="overView" runat="server" />
+	<br />
+	<center>
+        <img alt="" src="<umbraco:Item field="sloganImage" runat="server" />" />
+	</center>
+    <br />
+    <div class="clear5">
+    </div>
+    <div class="lcol">
+		<umbraco:Item field="outTeam" runat="server" />
+        <br/>
+        <umbraco:Item ID="Item1" field="whatWeDo" runat="server" />
+	</div>
+	<div class="rcol">
+		<umbraco:Item ID="History" field="history" runat="server" />
+	</div>
+	<div class="clear">
+    </div>
+	<%--<umbraco:Macro Alias="GetListClients" runat="server" />
+	<div class="clear"></div>
+	<umbraco:Macro Alias="GetListContacts" runat="server" />--%>
+</div>
+
+
+</asp:content>

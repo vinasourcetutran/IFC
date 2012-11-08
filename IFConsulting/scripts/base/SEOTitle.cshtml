@@ -1,0 +1,26 @@
+﻿
+@inherits umbraco.MacroEngines.DynamicNodeContext
+@using umbraco.MacroEngines;
+@{ 
+	
+    string title = "";
+    if (@Model.SEOTitle.GetType() != typeof(DynamicNull) && @Model.SEOTitle != "")
+    {
+        title = @Model.SEOTitle;		
+	}
+    else if (@Model.Title.GetType() != typeof(DynamicNull) && @Model.Title != "")
+    {
+        title = @Model.Title;
+    }
+    else
+    {
+        var home = @Model.AncestorOrSelf(1);
+        if (@home.SiteName.GetType() != typeof(DynamicNull) && @Model.SiteName != "")
+        {
+            title = @Model.SiteName;            
+        }  
+       //note: dont use the node name like we normally do
+    }
+    <text>@Html.Raw(title)</text>
+   
+}

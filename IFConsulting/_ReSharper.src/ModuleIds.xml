@@ -1,0 +1,8 @@
+<Modules>
+  <Module PersistentId="7AE502A3-9570-470B-B9B7-A2DC934F8E00" ModuleId="src" />
+  <Module PersistentId="IFC.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" ModuleId="IFC.Common" />
+  <Module PersistentId="IFC.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" ModuleId="IFC.Business" />
+  <Module PersistentId="IFC.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" ModuleId="IFC.Data" />
+  <Module PersistentId="System.Data.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="System.Data.Entity" />
+  <Module PersistentId="System.Data.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="System.Data.Entity_1" />
+</Modules>

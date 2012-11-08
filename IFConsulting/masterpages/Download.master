@@ -1,0 +1,20 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="Content" runat="server">
+    <div class="column_width225">
+        <%--<umbraco:Macro ID="Macro1" Alias="MenuServiceList" runat="server" />
+        <div class="clear25">
+        </div>
+        <umbraco:Macro ID="Macro2" Alias="GetAdvList" runat="server" />--%>
+        <%--<ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>--%>
+        <umbraco:Macro ID="Macro2" Alias="GetListDownloadSection" runat="server" />
+    </div>
+    <div class="column_width740">
+        <umbraco:Macro Alias="Download" runat="server" />
+    </div>
+</asp:content>

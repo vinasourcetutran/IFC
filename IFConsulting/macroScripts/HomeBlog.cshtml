@@ -1,0 +1,66 @@
+﻿@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@using System.Xml.Linq
+@using IFC.Common;
+
+@inherits DynamicNodeContext
+@{
+    var node = @Model.AncestorOrSelf(1);
+    string str = node.GetPropertyValue("blogRefRSS");
+    int totalFeed = 2;
+    if (!node.HasValue("blogRefRSSTotalItems") || !int.TryParse(node.GetPropertyValue("blogRefRSSTotalItems"), out totalFeed) || totalFeed < 1)
+    {
+        totalFeed = 2;
+    }
+    
+    bool hasRSS = false;
+    XElement rss = null;
+    for (int i = 0; i < 3; i++)
+    {
+        try
+        {
+            rss = XElement.Load(str);
+            if (rss != null && rss.HasElements && !rss.IsEmpty)
+            {
+                hasRSS = true;
+            }
+            break;
+        }
+        catch (Exception er)
+        {
+            hasRSS = false;
+        }
+    }
+    if (hasRSS)
+    {
+        for (int i = 0; i < rss.Element("channel").Elements("item").Count() && i < totalFeed; i++)
+        {
+            XElement element = rss.Element("channel").Elements("item").ElementAt(i);
+            string description = @element.Element("description").Value;
+            <div class="home-blog-feed-item">        
+                <a href="@element.Element("link").Value" class="blog_title" title="@element.Element("title").Value">@Html.Raw(HtmlRemoval.StripTagsRegex(element.Element("title").Value))</a>
+                <br />
+                <span class="postdate">
+                    @if (element.Element("pubDate") != null && !string.IsNullOrWhiteSpace(element.Element("pubDate").Value.Trim()))
+                    {
+                        if (element.Element("pubDate").Value.Trim().Length > 16)
+                        {
+                            @(element.Element("pubDate").Value.Trim().Substring(0, 16))
+                        }
+                        else
+                        {
+                            @(element.Element("pubDate").Value.Trim())
+                        }
+                    }
+                </span>
+                <p>                               
+                    @Html.Raw(HtmlRemoval.StripTagsRegex(description))
+                </p>
+                <span class="readmore"><a class="with-right-arrow" href="@element.Element("link").Value" title="Read more">
+                                           Read more</a> </span>
+                <div class="clear">
+                </div>              
+            </div>
+        }
+    }
+}

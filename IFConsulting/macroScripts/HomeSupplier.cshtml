@@ -1,0 +1,28 @@
+﻿@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@using System.Xml.Linq
+@inherits DynamicNodeContext
+@{    
+    var parent = new DynamicNode(1290);   
+    int visibleCount = 0;    
+    for (int i = parent.ChildrenAsList.Count - 1; i >= 0; i--)
+    {
+        if (visibleCount > 2)
+        {
+            break;
+        }
+        var child = new DynamicNode(parent.ChildrenAsList[i].Id);        
+        if (child.Visible)
+        {
+            dynamic mediaItem = @Model.MediaById(@child.GetPropertyValue("imageDisplay"));
+            visibleCount++;            
+            <div class="home-supplier">
+                <div style="width: 140px; height: 40px;">
+                    <img style="max-width: 140px; max-height: 40px;" src="@mediaItem.umbracoFile" alt="@child.GetProperty("Title")"/>
+                </div>
+                <br />                
+                <i>@child.GetProperty("description")</i>
+            </div>
+        }
+    }
+}

@@ -1,0 +1,49 @@
+﻿@using umbraco.MacroEngines
+@using umbraco.NodeFactory;
+@using System.Linq
+@inherits DynamicNodeContext
+@{
+    Node nodeParent = new Node(1088);
+
+    <ul class="sitemap_ul">
+        <li><a href="@nodeParent.Url">@nodeParent.Name</a> </li>
+        @foreach (var item in nodeParent.ChildrenAsList.OrderByDescending(c => c.GetProperty("sitemapIndex") != null && !string.IsNullOrWhiteSpace(c.GetProperty("sitemapIndex").Value) ? int.Parse(c.GetProperty("sitemapIndex").Value) : 0))
+        {
+            if (item.GetProperty("hideInSitemap") == null ||
+                item.GetProperty("hideInSitemap").Value != "1")
+            { 
+
+            <li><a href="@item.Url">@item.Name</a>
+                @if (item.ChildrenAsList.Count() > 0)
+                {
+                    <ul>
+                        @foreach (var subItem in item.ChildrenAsList)
+                        {
+                            if (subItem.GetProperty("hideInSitemap") == null ||
+                                subItem.GetProperty("hideInSitemap").Value != "1")
+                            {
+                                switch(item.Id)
+                                {
+                                    case 1242:
+                                        <li><a href="/qas?id=@subItem.Id">@subItem.Name </a></li>
+                                        break;
+                                    case 1255:
+                                        <li><a target="_blank" href="@subItem.GetProperty("link").Value">@subItem.Name</a> </li>
+                                        break;
+                                    case 1276:
+                                        <li><a href="/Contact">@subItem.Name</a> </li>
+                                        break;
+                                    default:
+                                        <li><a href="@subItem.Url">@subItem.Name</a> </li>
+                                        break;
+                                }
+                            }
+                        }
+                    </ul>
+                }
+            </li>            
+            }
+        }
+    </ul>   
+          
+ }

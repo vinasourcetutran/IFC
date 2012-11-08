@@ -1,0 +1,10 @@
+﻿@inherits umbraco.MacroEngines.DynamicNodeContext
+                        @using umbraco.MacroEngines;
+                        @using System.Configuration;
+                        @using umbraco.NodeFactory;
+                        @{
+                            Node node = new Node(1342);    
+                        }
+                        <div class="facebook">
+                            <a href="@node.Properties["FacebookRef"].Value" class="img_facebook" title="Facebook"></a>
+                        </div>

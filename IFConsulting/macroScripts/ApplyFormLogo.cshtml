@@ -1,0 +1,21 @@
+@using umbraco.MacroEngines
+@inherits DynamicNodeContext
+@{
+    string logoUrl;
+    dynamic insurer = null;
+    if (Context.Request["premiumId"] == null || string.IsNullOrWhiteSpace(Context.Request["premiumId"]))
+    {
+        logoUrl = "";
+    }
+    else
+    {
+        dynamic premium = new DynamicNode(Context.Request["premiumId"].Trim());
+
+        insurer = premium.Parent.Parent;
+        logoUrl = insurer.HasValue("logo") ? insurer.logo : "";
+    }
+}
+@if (!string.IsNullOrWhiteSpace(logoUrl))
+{
+    <img src= "@insurer.logo" alt="@insurer.Name" />
+}

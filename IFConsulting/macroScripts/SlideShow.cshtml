@@ -1,0 +1,380 @@
+﻿@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@using System.Linq
+@inherits DynamicNodeContext
+@{
+    umbraco.NodeFactory.Node nationals = new umbraco.NodeFactory.Node(1347);
+    umbraco.NodeFactory.Node areas = new umbraco.NodeFactory.Node(1350);
+    umbraco.NodeFactory.Node levels = new umbraco.NodeFactory.Node(1355);
+    umbraco.NodeFactory.Node options = new umbraco.NodeFactory.Node(1361);
+}
+<script type="text/javascript">
+
+    function action() {
+        $('.search_these_people .ddl a').css('width', '122px');
+        $('.currency a').css('width', '122px');
+        $('select#residence-country').selectmenu({ style: 'dropdown' });
+
+        $('select#files, select#filesresidence-country').selectmenu({
+            icons: [
+                { find: '.script', icon: 'ui-icon-script' },
+                { find: '.image', icon: 'ui-icon-image' }
+            ]
+        });
+
+        $('select#home-select-cover-area').selectmenu({ style: 'dropdown' });
+        $('select#files, select#fileshome-select-cover-area').selectmenu({
+            icons: [
+                { find: '.script', icon: 'ui-icon-script' },
+                { find: '.image', icon: 'ui-icon-image' }
+            ]
+        });
+    }
+    $(function () {
+        action();
+        $('div#home-apply-go-btn').click(function () {
+            $("#home-row0").fadeOut("slow", function () {
+                $("#home-row0-search").fadeIn("slow", function () {
+                    $('select.applicant').selectmenu({ style: 'dropdown' });
+                })
+            });
+
+        });
+        $('.go_back').click(function () {
+            $("#home-row0-search").fadeOut("slow", function () {
+                $("#home-row0").fadeIn("slow");
+
+            });
+            $("#home-row0-search").fadeOut("slow");
+        });
+
+    });
+
+
+    $(document).ready(function () {
+        $('#add_more_children').click(function () {
+            addchild();
+        });
+    });
+
+    function addchild() {
+        var get_li = $('#these_people').find('li');
+        var id = get_li.length + 1;
+        var add_more_children = '<li><div class="tlt">' + (id - 2) + 'th Child</div><div class="ddl"><label for="applicant-button"></label><select name="applicant" id="applicant' + id + '" class="applicant"><option>--</option><option>Male</option><option>Female</option></select></div><div class="age"><input type="text" class="txtAge" value="age" onfocus="if (this.value==\'age\') {this.value = \'\';this.style.color=\'#000000\';}" onblur="if (this.value==\'\'){this.value=\'age\';this.style.color=\'#C1C1C1\';}"  /></div><div class="clear"></div></li>';
+        if (id < 13) {
+            $('#these_people').append($(add_more_children));
+            $('select.applicant').selectmenu({ style: 'dropdown' });
+        }
+        else {
+            $('#add_more_children').hide(); 
+        }
+    };
+
+</script>
+<!--Banner 1-->
+@* Uncmment this section after finish caomparator function
+<div style="width: 967px; height: 422px; overflow: hidden">
+    <div id="home-row0">
+        <div class="slider-wrapper theme-default">
+            <div class="ribbon">
+            </div>
+            <div id="slider" class="nivoSlider">
+                @foreach (var x in Model.slideShowImages)
+                {
+                    var contentItem = Model.MediaById(x.InnerText);
+                    <img style="max-width: 517px; max-height: 420px" src="@contentItem.umbracoFile" alt="@contentItem.Name" class="img_banner" />
+                }
+            </div>
+        </div>
+        <div id="home-apply-form">
+            <div style="width: 100%; height: 205px;">
+                <h2 class="home-h2-alts">
+                </h2>
+            </div>
+            <label for="residence-country-button">
+            </label>
+            <select name="residence-country" id="residence-country">
+                @foreach (umbraco.NodeFactory.Node national in nationals.Children)
+                {
+                    string text = national.Properties["displayName"].Value;
+                    if (text.Length > 25)
+                    {
+                        text = text.Substring(0, 25) + "...";
+                    }
+                    <option value="@national.Properties["name"]">
+                        @text</option>
+                }
+            </select>
+            <div style="height: 80px; overflow: hidden">
+                &nbsp;</div>
+            <label for="home-select-cover-area-button">
+            </label>
+            <select name="home-select-cover-area" id="home-select-cover-area">
+                @foreach (umbraco.NodeFactory.Node area in areas.Children)
+                {
+                    string text = area.Properties["displayName"].Value;
+                    if (text.Length > 25)
+                    {
+                        text = text.Substring(0, 25) + "...";
+                    }
+                    <option value="@area.Properties["name"]">
+                        @text</option>
+                }
+            </select>
+            <div class="clear20">
+            </div>
+            <div id="home-apply-go-btn">
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <!--Banner 2-->
+    <!--Banner 2-->
+    <div id="home-row0-search">
+        <div class="search_these_people">
+            <h2 class="search_title">
+                For These People</h2>
+            <div class="these_people_content" style="height:260px;">
+            <ul id="these_people">
+                <li>
+                    <div class="tlt">
+                        Applicant</div>
+                    <div class="ddl">
+                        <label for="applicant-button">
+                        </label>
+                        <select name="applicant" id="applicant1" class="applicant">
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </div>
+                    <div class="age">
+                        <input type="text" class="txtAge" value="Age" />
+                    </div>
+                    <div class="clear">
+                    </div>
+                </li>
+                <li>
+                    <div class="tlt">
+                        Spouse</div>
+                    <div class="ddl">
+                        <label for="applicant-button">
+                        </label>
+                        <select name="applicant" id="applicant2" class="applicant">
+                            <option value="-1">--</option>
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </div>
+                    <div class="age">
+                        <input type="text" class="txtAge" value="Age" onfocus="if (this.value=='age') {this.value = '';this.style.color='#000000';}" onblur="if (this.value==''){this.value='age';this.style.color='#C1C1C1';}"  />
+                    </div>
+                    <div class="clear">
+                    </div>
+                </li>
+                <li>
+                    <div class="tlt">
+                        1st Child</div>
+                    <div class="ddl">
+                        <label for="applicant-button">
+                        </label>
+                        <select name="applicant" id="applicant3" class="applicant">
+                            <option value="-1">--</option>
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </div>
+                    <div class="age">
+                        <input type="text" class="txtAge" value="Age" onfocus="if (this.value=='age') {this.value = '';this.style.color='#000000';}" onblur="if (this.value==''){this.value='age';this.style.color='#C1C1C1';}"  />
+                    </div>
+                    <div class="clear">
+                    </div>
+                </li>
+                <li>
+                    <div class="tlt">
+                        2nd Child</div>
+                    <div class="ddl">
+                        <label for="applicant-button">
+                        </label>
+                        <select name="applicant" id="applicant4" class="applicant">
+                            <option value="-1">--</option>
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </div>
+                    <div class="age">
+                        <input type="text" class="txtAge" value="Age" onfocus="if (this.value=='age') {this.value = '';this.style.color='#000000';}" onblur="if (this.value==''){this.value='age';this.style.color='#C1C1C1';}"  />
+                    </div>
+                    <div class="clear">
+                    </div>
+                </li>
+                <li>
+                    <div class="tlt">
+                        3rd Child</div>
+                    <div class="ddl">
+                        <label for="applicant-button">
+                        </label>
+                        <select name="applicant" id="applicant5" class="applicant">
+                            <option value="-1">--</option>
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </div>
+                    <div class="age">
+                        <input type="text" class="txtAge" value="Age" onfocus="if (this.value=='age') {this.value = '';this.style.color='#000000';}" onblur="if (this.value==''){this.value='age';this.style.color='#C1C1C1';}"  />
+                    </div>
+                    <div class="clear">
+                    </div>
+                </li>
+            </ul>
+            </div>
+            <ul>
+                <li class="lastli">
+                    <div class="tlt">
+                        &nbsp;</div>
+                    <div class="ddl">
+                        <span id="add_more_children">+ add more children</span>
+                    </div>
+                    <div class="age">
+                        &nbsp;
+                    </div>
+                    <div class="clear">
+                    </div>
+                </li>
+            </ul>
+            <div class="clear">
+            </div>
+            <div class="go_back">
+                go back</div>
+        </div>
+        <div class="search_these_benifits">
+            <h2 class="search_title">
+                With These Benefits</h2>
+            <ul>
+                @foreach (Node level in levels.Children)
+                {
+                    if (level.Properties["name"].Value == "In-Out") { continue; }
+                    string defaultDisable = level.Properties["name"].Value == "In" ? "checked disabled" : "";
+                    <li>
+                        <div class="benifits_title">
+                            @level.Properties["displayName"]
+                        </div>
+                        <div class="benifits_checkbox">
+                            <input @defaultDisable type="checkbox" name='@("lv_" + level.Properties["name"])' id='@("lv_" + @level.Properties["name"])' class="cover-level" />
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </li>
+                }
+                @foreach (Node option in options.ChildrenAsList)
+                { 
+                    <li>
+                        <div class="benifits_title">
+                            @option.Properties["displayName"]
+                        </div>
+                        <div class="benifits_checkbox">
+                            <input type="checkbox" name='@("lv_" + option.Properties["name"])' id='@("lv_" + @option.Properties["name"])' class="optional-filter" />
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="search_denominated">
+            <h2 class="search_title">
+                Denominated In</h2>
+            <div class="clear">
+            </div>
+            <div class="currency">
+                <label for="applicant-button">
+                </label>
+                <select name="applicant" id="applicant" class="applicant">
+                    <option>$ USD</option>
+                    <option>&nbsp;&nbsp;VND</option>
+                </select>
+            </div>
+            <div class="clear">
+            </div>
+            <div>
+                <a class="bntSearch" href="#">&nbsp;</a>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('a.bntSearch').click(function (e) {
+            e.preventDefault();
+            if (!validate())
+                return;
+            var patients = [];
+
+            $('#these_people select.applicant').filter(function () {
+                return $(this).val() != "-1";
+            }).each(function () {
+                patients.push({
+                    Sex: $(this).val(),
+                    Age: parseInt($(this).closest('div').next().find('input').val())
+                });
+            });
+
+            var levels = ['In'];
+            if ($('input[name="lv_Out"]').attr('checked'))
+                levels.push('Out');
+
+            var options = [];
+            $('input.optional-filter:checked').each(function () {
+                options.push($(this).val());
+            });
+
+            var criteria = {
+                ListPatients: patients,
+                ListLevels: levels,
+                ListOptions: options
+            };
+
+            window.location = "SearchResult?data=" + encodeURIComponent(JSON.stringify(criteria));
+        });
+
+        $('input.txtAge').focus(function () {
+            var tmp = $(this).val();
+            if (!(/^\d+$/.test(tmp))) {
+                $(this).val('');
+            }
+            $(this).css('color', '#000000');
+        });
+
+        $('input.txtAge').blur(function () {
+            var tmp = $(this).val();
+            if (!(/^\d+$/.test(tmp))) {
+                $(this).val('Age').css('color', '#C1C1C1');
+            }
+        });
+    });
+
+    function validate() {
+        var lstSelects = $('#these_people select.applicant').filter(function () {
+            return $(this).val() != "-1";
+        });
+        if (lstSelects.length == 0)
+            return false;
+        var isValid = true;
+        lstSelects.each(function (index) {
+            var input = $.trim($(this).closest('div').next().find('input').val());
+            if (input == "" || !(/^\d+$/.test(input))) {
+                $(this).closest('div').next().find('input').focus();
+                isValid = false;
+                return false;
+            }
+        });
+        return isValid;
+    }
+    
+</script>
+*@

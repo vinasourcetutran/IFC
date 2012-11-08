@@ -1,0 +1,20 @@
+@using umbraco.MacroEngines
+@inherits DynamicNodeContext
+@{
+    dynamic downloadNode;
+    if (Model.Name == "Download" && Model.Parent.NodeTypeAlias == "Home")
+    {
+        downloadNode = Model;
+    }
+    else
+    {
+        downloadNode = Model.Parent;
+    }
+}
+
+<span style="font-size: 24px; font-weight: bold; color: Blue"><a href="/Download">Downloads</a></span>
+
+@foreach (var node in downloadNode.Children)
+{
+    <p style="font-size: 14px;"><a href="@node.Url" style="text-decoration: underline">@node.title</a></p>
+}

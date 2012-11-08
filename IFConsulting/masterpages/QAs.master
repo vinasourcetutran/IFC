@@ -1,0 +1,42 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="Content" runat="server">
+    <div class="column_width225">
+        <umbraco:Macro Alias="MenuServiceList" runat="server" />
+        <div class="clear25">
+        </div>
+        <umbraco:Macro Alias="GetAdvList" runat="server" />
+    </div>
+    <div class="column_width740">
+        <div id="customer-promise-col-left" class="width_495">
+            <div class="service_title">
+                <h1>
+                    Question & Answers
+                </h1>
+            </div>
+            <umbraco:Macro Alias="QAsPage" runat="server" />
+        </div>
+        <div id="customer-promise-col-right" class="col-right">
+            <div id="want-to-talk">
+                <div id="contact-links">
+                    <a id="lnk-want2talk" href="/contact.aspx"></a>
+                    <div id="want-to-talk-links">
+                        <a href="/contact.aspx">
+                            <img alt="contact us" src="/images/bnt_contact.jpg" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="clear20">
+            </div>
+            <umbraco:Macro ID="Macro1" Alias="GetQAList" runat="server"></umbraco:Macro>
+            <div class="clear15">
+            </div>
+            <div>
+                <img alt="Happy Customer" src="/images/happy_customer.jpg" />
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+</asp:Content>

@@ -1,0 +1,18 @@
+﻿@using umbraco.MacroEngines;
+@inherits DynamicNodeContext
+
+@using umbraco.NodeFactory;
+@{
+    Node node = new Node(1342);    
+}
+
+<div id="home-row5">
+    <div id="supported-by">
+    </div>
+    <div id="social-links-wrap">
+        <div class="social-links-grid-first">
+            <a href="@node.Properties["FacebookRef"].Value" target="_blank" class="ir img-social-links-facebook">
+                BrokerFish Facebook Page</a>
+        </div>
+    </div>
+</div>

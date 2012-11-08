@@ -1,0 +1,85 @@
+﻿
+@inherits umbraco.MacroEngines.DynamicNodeContext
+@using umbraco.MacroEngines;
+@using System.Configuration;
+@{ 
+	
+    var home = @Model.AncestorOrSelf(1);
+    string imagePath = "";
+    string shortText = "";
+    string synopsis = "";
+    string keywords = "";
+    
+    if(home.Id == @Model.Id){
+        imagePath = ConfigurationManager.AppSettings["SiteLogo"];
+    }    
+    else
+    {
+        var media = @Model.headerImage;
+        if (media.ToString() != "" && media.url != "")
+        {
+            imagePath = ConfigurationManager.AppSettings["SiteURL"] + media.url;             
+        }
+
+    }
+
+    //shorttext msy be set by logic above..
+    if (string.IsNullOrEmpty(shortText))
+    {
+        if (@Model.BodyText.GetType() != typeof(DynamicNull) && @Model.BodyText.ToString() != "")
+        {
+            shortText = umbraco.library.StripHtml(@Model.BodyText.ToString());
+        }
+        else if (@Model.WebsiteDescription.GetType() != typeof(DynamicNull) && @Model.WebsiteDescription.ToString() != "")
+        {
+            shortText = umbraco.library.StripHtml(@Model.WebsiteDescription.ToString());
+        }
+        if (@Model.MetaDescription.GetType() != typeof(DynamicNull) && @Model.MetaDescription != "")
+        {
+            shortText = @Model.MetaDescription;
+        }
+        if (@Model.IntroSynopsis.GetType() != typeof(DynamicNull) && @Model.IntroSynopsis.ToString() != "")
+        {
+            shortText = umbraco.library.StripHtml(@Model.IntroSynopsis.ToString());
+        }
+
+    }
+
+    if (@Model.MetaDescription.GetType() != typeof(DynamicNull) && @Model.MetaDescription != "")
+    {
+        synopsis = @Model.MetaDescription.Replace("\"", "'").Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
+    }
+
+    if (@Model.MetaKeywords.GetType() != typeof(DynamicNull) && @Model.MetaKeywords != "")
+    {
+        keywords = @Model.MetaKeywords.Replace("\"", "'").Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
+    }
+
+    if (shortText == null)
+    {
+        shortText = "";
+    }
+    if (shortText.Length > 200)
+    {
+        shortText = shortText.Substring(0, 200);
+    }
+
+    shortText = shortText.Replace("\"", "'").Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
+
+    <meta property="og:title" content="@home.SiteName | @Model.Name"/>
+    <meta property="og:description" content="@shortText"/>
+    
+    if (imagePath != "")
+    {
+        <meta property="og:image" content="@imagePath"/>
+    }
+    else
+    {
+        <meta property="og:image" content="@ConfigurationManager.AppSettings["SiteLogo"]"/>
+
+    }
+    
+    <meta name="description" content="@synopsis" />
+    <meta name="keywords" content="@keywords" />
+    
+}

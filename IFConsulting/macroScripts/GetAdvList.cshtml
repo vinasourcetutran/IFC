@@ -1,0 +1,19 @@
+﻿@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@inherits DynamicNodeContext
+
+@{
+    Node QAsNode = new Node(1320);
+    
+    <div>
+        
+        @foreach (Node item in QAsNode.Children)
+        { 
+        <div>
+            <a href="@item.Properties["Link"]" title="@item.Properties["Title"]" > 
+		        <img alt="@item.Properties["Title"]" src="@item.Properties["Image"]" width="170px"/> 
+	        </a>
+     	</div>
+        }        
+    </div>
+}
